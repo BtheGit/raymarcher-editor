@@ -1,8 +1,9 @@
 import React from 'react';
+import './PreviewPane.css';
 
 const PreviewPane = () => {
   return (
-    <div>Preview Pane</div>
+    <div class="preview-pane__container">Preview Pane</div>
   )
 };
 

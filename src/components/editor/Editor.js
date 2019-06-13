@@ -1,8 +1,9 @@
 import React from 'react';
+import './Editor.css';
 
 const Editor = () => {
   return (
-    <div>Editor</div>
+    <div class="editor__container">Editor</div>
   )
 };
 
