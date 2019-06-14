@@ -3,7 +3,7 @@ import './Editor.css';
 
 const Editor = () => {
   return (
-    <div class="editor__container">Editor</div>
+    <div className="editor__container">Editor</div>
   )
 };
 

@@ -4,10 +4,11 @@ import './PreviewPane.css';
 
 // MVP We only want to instantiate the game if a WAD is available.
 const PreviewPane = props => {
+  const isWADAvailable = true;
   return (
-    <div class="preview-pane__container">
+    <div className="preview-pane__container">
       {
-        props.isWADAvailable
+        isWADAvailable
           ? <Game />
           : <h1>No WAD is available to load.</h1>
       }
