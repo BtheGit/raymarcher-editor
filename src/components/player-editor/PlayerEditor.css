@@ -1,0 +1,4 @@
+.player-editor__container {
+  background: cadetblue;
+  grid-area: bottom-left;
+}

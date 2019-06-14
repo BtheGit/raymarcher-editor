@@ -1,0 +1,4 @@
+.world-settings-editor__container {
+  background: violet;
+  grid-area: top-left;
+}

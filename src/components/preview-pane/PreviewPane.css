@@ -1,5 +1,8 @@
 .preview-pane__container {
   height: 50%;
   width: 100%;
-  background: rebeccapurple;
+  background: rgb(54, 27, 82);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

@@ -1,0 +1,4 @@
+.grid-editor__container {
+  background: thistle;
+  grid-area: center;
+}

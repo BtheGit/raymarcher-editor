@@ -1,0 +1,4 @@
+.cell-editor__container {
+  background: cornflowerblue;
+  grid-area: right;
+}
