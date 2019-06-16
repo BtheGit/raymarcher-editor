@@ -19,3 +19,7 @@
   width: 15px;
   border: 1px solid #888;
 }
+
+.grid-editor__cell.grid-editor__cell--active {
+  filter: drop-shadow(0 0 2px black);
+}

@@ -11,6 +11,16 @@ const colors = ['rgba(0,0,0,0.1)', 'pink']
 const GridEditor = () => {
   // Ha, I hope we can fix this soon.
   const level = useSelector(store => store.level);
+  const activeCell = useSelector(store => store.editor.activeCell);
+  const isActiveCell = (x, y) => {
+    if(!activeCell) {
+      return false;
+    }
+    if(activeCell.x === x && activeCell.y === y) {
+      return true;
+    }
+    return false;
+  }
   const map = level.maps[0];
   const grid = map.grid;
   const dispatch = useDispatch();
@@ -25,7 +35,7 @@ const GridEditor = () => {
             row.map((cell, columnIndex) => {
               return (
                 <div 
-                  className="grid-editor__cell"
+                  className={`grid-editor__cell ${ isActiveCell(columnIndex, rowIndex) ? 'grid-editor__cell--active' : '' }`}
                   key={ columnIndex } 
                   style={{ background: colors[cell] }} 
                   onClick={ () => selectCell(columnIndex, rowIndex) }>
