@@ -21,7 +21,7 @@ const GridEditor = () => {
     }
     return false;
   }
-  const map = level.maps[0];
+  const map = level.map;
   const grid = map.grid;
   const dispatch = useDispatch();
   const selectCell = useCallback((x, y) => dispatch(selectActiveCell(x, y)), [dispatch])

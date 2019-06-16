@@ -16,7 +16,7 @@ const CellEditor = () => {
     )
   }
   else {
-    const map = level.maps[0];
+    const map = level.map;
     const grid = map.grid;
     const cell = grid[activeCell.y][activeCell.x];
     if(cell !== checkedRadio){
