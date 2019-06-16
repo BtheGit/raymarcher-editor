@@ -1,5 +1,6 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useCallback } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectActiveCell } from '../../store/reducers/editorReducer';
 import './GridEditor.css';
 
 
@@ -12,15 +13,24 @@ const GridEditor = () => {
   const level = useSelector(store => store.level);
   const map = level.maps[0];
   const grid = map.grid;
+  const dispatch = useDispatch();
+  const selectCell = useCallback((x, y) => dispatch(selectActiveCell(x, y)), [dispatch])
 
   // We'll add in components of course later
   const generateGridCells = grid => {
     return grid.map((row, rowIndex) => {
       return(
-        <div className="grid-editor__row">
+        <div className="grid-editor__row" key={ rowIndex }>
           {
             row.map((cell, columnIndex) => {
-              return <div className="grid-editor__cell" style={{ background: colors[cell] }}></div>
+              return (
+                <div 
+                  className="grid-editor__cell"
+                  key={ columnIndex } 
+                  style={{ background: colors[cell] }} 
+                  onClick={ () => selectCell(columnIndex, rowIndex) }>
+                </div>
+              )
             })
           }
         </div>
