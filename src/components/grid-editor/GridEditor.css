@@ -1,6 +1,7 @@
 .grid-editor__container {
   grid-area: center;
-  overflow: scroll;
+  /* For now, we'll hard cap the level size */
+  overflow: none;
   display: flex;
   flex-direction: column;
   justify-content: center;
