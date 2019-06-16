@@ -1,4 +1,20 @@
 .grid-editor__container {
-  background: thistle;
   grid-area: center;
+  overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid-editor__row {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.grid-editor__cell {
+  display: inline-block;
+  height: 15px;
+  width: 15px;
+  border: 1px solid #888;
 }

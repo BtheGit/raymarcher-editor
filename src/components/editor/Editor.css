@@ -1,7 +1,6 @@
 .editor__container {
   height: 50%;
   width: 100%;
-  background: #DDF;
   display: grid;
   grid-template-columns: 2fr 8fr 3fr;
   grid-template-rows: auto;
