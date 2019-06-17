@@ -6,7 +6,7 @@ import './GridEditor.css';
 
 
 // We'll need to have a store of default colors.
-const colors = ['rgba(0,0,0,0.1)', 'pink']
+const colors = ['rgba(255,255,255,0.2)', 'hotpink']
 
 const GridEditor = () => {
   // Ha, I hope we can fix this soon.

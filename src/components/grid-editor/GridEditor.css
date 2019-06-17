@@ -6,6 +6,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background: rgb(69, 113, 148);
 }
 
 .grid-editor__row {
@@ -17,7 +18,7 @@
   display: inline-block;
   height: 15px;
   width: 15px;
-  border: 1px solid #888;
+  border: 1px solid #666;
 }
 
 .grid-editor__cell.grid-editor__cell--active {
