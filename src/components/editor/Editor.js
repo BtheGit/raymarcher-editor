@@ -4,6 +4,8 @@ import PlayerEditor from '../player-editor';
 import GridEditor from '../grid-editor';
 import CellEditor from '../cell-editor';
 import './Editor.css';
+import PreviewPane from '../preview-pane';
+import OutputEditor from '../output-editor';
 
 const Editor = () => {
   return (
@@ -12,6 +14,8 @@ const Editor = () => {
       <PlayerEditor />
       <GridEditor />
       <CellEditor />
+      <PreviewPane />
+      <OutputEditor />
     </div>
   )
 };

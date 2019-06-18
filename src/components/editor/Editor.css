@@ -1,10 +1,12 @@
 .editor__container {
-  height: 50%;
+  height: 100%;
   width: 100%;
   display: grid;
   grid-template-columns: 2fr 8fr 3fr;
   grid-template-rows: auto;
   grid-template-areas:
-    "top-left center right"
-    "bottom-left center right"
+    "world map cell"
+    "player map cell"
+    ". preview ."
+    ". preview output"
 }

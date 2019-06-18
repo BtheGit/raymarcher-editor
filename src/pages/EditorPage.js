@@ -1,17 +1,7 @@
 import React from 'react';
 import Editor from '../components/editor';
-import PreviewPane from '../components/preview-pane';
-import OutputEditor from '../components/output-editor';
-import './EditorPage.css';
 
-const EditorPage = () => {
-  return (
-    <>
-      <Editor />
-      <PreviewPane />
-      <OutputEditor />
-    </>
-  );
-}
+// This is going to be largely deprecated. Keeping it for now as a clear tag for a discrete view.
+const EditorPage = () => <Editor />;
 
 export default EditorPage;

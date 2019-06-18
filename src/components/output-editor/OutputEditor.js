@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from 'react-redux';
+import './OutputEditor.css';
 
 // MVP: Open a modal with the output JSON
 // 2: Generate a file that automatically downloads

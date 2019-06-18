@@ -1,5 +1,5 @@
 .grid-editor__container {
-  grid-area: center;
+  grid-area: map;
   /* For now, we'll hard cap the level size */
   overflow: none;
   display: flex;
