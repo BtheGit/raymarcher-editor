@@ -1,6 +1,7 @@
 import React from 'react';
 import Editor from '../components/editor';
 import PreviewPane from '../components/preview-pane';
+import OutputEditor from '../components/output-editor';
 import './EditorPage.css';
 
 const EditorPage = () => {
@@ -8,6 +9,7 @@ const EditorPage = () => {
     <>
       <Editor />
       <PreviewPane />
+      <OutputEditor />
     </>
   );
 }

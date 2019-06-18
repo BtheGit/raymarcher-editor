@@ -72,3 +72,18 @@
     Ninth.
         Be able to export the current WAD as a JSON. (We'll deal with the textures later.)
     MVP done?
+
+
+Plan:
+  - Export as JSON
+  - Give cell editor a save button
+  - Allow floors to have a ceiling
+  - Allow multiple faces for walls
+  - Create a sky editor.
+    - MVP One color
+    - Allow for gradients with unlimited numbers of stops defined.
+  - Set up base textures (built ins)
+    - We'll start with 2 floor, 4 wall, and 3 sky texture options.
+  - Allow for sky to be gradient or texture
+  - allow for floor and ceiling to be either
+  - allow for wall faces to be either
