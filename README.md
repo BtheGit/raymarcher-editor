@@ -3,7 +3,7 @@
 ## Map Editor:
     Requirements:
         - Specify world dimensions in cell units.
-        - Cells are selectable
+        - ~~Cells are selectable~~
         - Cells display a top down preview of the texture they contain. Walls with multiple faces will have to show each separately. Ceilings can perhaps be toggled on and off.
         - Selecting a cell brings up a cell editor
         - A cell editor lets you choose what type of cell it is (Floor or Wall, ceiling or not, multiple faces).
@@ -18,6 +18,7 @@
         - You should be able to toggle sprites in the view (and POV display)
         - You should be able to add and toggle a sky texture
         - You should be able to add a sky gradient.
+        - Add a toggle for clipping mode.
     Wish list:
         - Select multiple cells
         - Sprite creator in situ.
