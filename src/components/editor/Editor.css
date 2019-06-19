@@ -2,11 +2,13 @@
   height: 100%;
   width: 100%;
   display: grid;
-  grid-template-columns: 2fr 8fr 3fr;
+  grid-template-columns: 3fr 8fr 3fr;
   grid-template-rows: auto;
   grid-template-areas:
     "world map cell"
     "player map cell"
-    ". preview ."
+    ". preview sky"
+    ". preview sky"
+    ". preview sky"
     ". preview output"
 }

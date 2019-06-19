@@ -3,9 +3,10 @@ import WorldSettingsEditor from '../world-settings-editor';
 import PlayerEditor from '../player-editor';
 import GridEditor from '../grid-editor';
 import CellEditor from '../cell-editor';
-import './Editor.css';
 import PreviewPane from '../preview-pane';
 import OutputEditor from '../output-editor';
+import SkyEditor from '../sky-editor';
+import './Editor.css';
 
 const Editor = () => {
   return (
@@ -14,6 +15,7 @@ const Editor = () => {
       <PlayerEditor />
       <GridEditor />
       <CellEditor />
+      <SkyEditor />
       <PreviewPane />
       <OutputEditor />
     </div>

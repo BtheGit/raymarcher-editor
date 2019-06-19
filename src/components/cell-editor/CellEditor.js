@@ -10,14 +10,8 @@ const CellEditor = () => {
   const level = useSelector(store => store.level);
   const dispatch = useDispatch();
   const setCellProps = useCallback((coords, props) => dispatch(setCellProperties(coords, props)), [dispatch])
-  const [checkedRadio, setRadioToChecked] = useState(0)
-
-  if(!activeCell){
-    return (
-      <div className="cell-editor__container">Select a cell to edit</div>
-    )
-  }
-  else {
+  const [checkedRadio, setRadioToChecked] = useState(0);
+  const renderCellEditor = () => {
     const map = level.map;
     const grid = map.grid;
     const cell = grid[activeCell.y][activeCell.x];
@@ -58,6 +52,15 @@ const CellEditor = () => {
       </div>
     )
   }
+  return (
+    <div className="cell-editor__container">
+      {
+        !activeCell
+          ? <p>Select a cell to edit</p>
+          : renderCellEditor()
+      }
+    </div>
+  )
 };
 
 export default CellEditor;
