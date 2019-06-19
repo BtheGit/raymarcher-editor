@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react-redux';
+import { useSelector } from 'react-redux';
 import './OutputEditor.css';
 
 // MVP: Open a modal with the output JSON
@@ -7,7 +7,10 @@ import './OutputEditor.css';
 // 3: Handle issues with textures and texture mapping
 
 const OutputEditor = () => {
-  const onSaveHandler = () => {};
+  const wadData = useSelector(store => store.level);
+  const onSaveHandler = () => {
+    console.log(wadData);
+  };
   return(
     <div className="output-editor__container">
       <button onClick={ onSaveHandler }>Save</button>
