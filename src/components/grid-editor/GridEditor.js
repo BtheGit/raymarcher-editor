@@ -52,7 +52,7 @@ const GridEditor = () => {
               let color;
               switch(colorType){
                 case 'hex':
-                  color = cellColorConfig.color;
+                  color = '#' + cellColorConfig.color;
                   break;
                 case 'hsl':
                   const defaultHSL = {
