@@ -21,8 +21,23 @@ export const updateVisibleCellEditorType = type => ({
 const initialState = {
   activeCell: { x: 0, y: 0 },
   cellEditor: {
-    // Which type of editor is selected
+    // null | 'floor' | 'wall'
     visibleEditor: null,
+  },
+  floorEditor: {
+    texture: null,
+    ceiling: {
+      texture: null,
+    },
+  },
+  wallEditor: {
+    texture: null,
+    faces: {
+      north: null,
+      south: null,
+      east: null,
+      west: null,
+    },
   },
 };
 

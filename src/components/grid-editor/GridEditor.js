@@ -40,13 +40,43 @@ const GridEditor = () => {
             row.map((cell, columnIndex) => {
               // We need to start handling complex cells. All cells are either a number or have a base texture key. That should
               // be enough for now (until real textures are used.)
-              const cellTextureCode = typeof cell === 'object' ? cell.texture : cell;
-              const cellTexture = colors[cellTextureCode];
+
+              // We are going to ignore faces, the editor view will only show the default face for now.
+              const cellTextureType = cell.textureType;
+              // For the first MVP, we'll just use colors. If there is a texture code, we'll use a hardcoded fallback.
+              if(cell.textureConfig == undefined){
+                console.log(cell)
+              }
+              const cellColorConfig = cellTextureType === 'color' ? cell.textureConfig : {};
+              const colorType = cellColorConfig.colorType;
+              let color;
+              switch(colorType){
+                case 'hex':
+                  color = cellColorConfig.color;
+                  break;
+                case 'hsl':
+                  const defaultHSL = {
+                    h: 25,
+                    s: 100,
+                    l: 50,
+                  }
+                  const mergedHSL = { ...defaultHSL, ...cellColorConfig.color }
+                  color = `hsl(${ mergedHSL.h }, ${ mergedHSL.s }%, ${ mergedHSL.l }%)`;
+                  break;
+                case 'rgb':
+                  // I'm not sure I really want to support HSL. Might be better to always convert it in the editor.
+                default:
+                  color = 'cornflowerblue';
+                  break;
+              }
+    
+              // const cellTextureCode = typeof cell === 'object' ? cell.texture : cell;
+              // const cellTexture = colors[cellTextureCode];
               return (
                 <div 
                   className={`grid-editor__cell ${ isActiveCell(columnIndex, rowIndex) ? 'grid-editor__cell--active' : '' }`}
                   key={ columnIndex } 
-                  style={{ background: cellTexture }} 
+                  style={{ background: color }} 
                   onClick={ () => selectCell(columnIndex, rowIndex) }>
                 </div>
               )

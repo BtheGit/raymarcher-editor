@@ -1,4 +1,6 @@
 canvas#raymarcher-main-display {
+  /* width: 100%;
+  height: auto; */
   border: 2px solid black;
   box-shadow: 0 14px 15px -12px black;
 }
