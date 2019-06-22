@@ -52,7 +52,8 @@ const GridEditor = () => {
               let color;
               switch(colorType){
                 case 'hex':
-                  color = '#' + cellColorConfig.color;
+                  const hasLeadingHash = cellColorConfig.color[0] === '#';
+                  color = hasLeadingHash ? cellColorConfig.color : '#' + cellColorConfig.color;
                   break;
                 case 'hsl':
                   const defaultHSL = {
