@@ -30,7 +30,7 @@ const GridEditor = () => {
     const cell = grid[y][x];
     const cellType = getCellType(cell);
     dispatch(selectActiveCell(x, y, cellType));
-  }, [dispatch]);
+  }, [dispatch, grid]);
   // We'll add in components of course later
   const generateGridCells = grid => {
     return grid.map((row, rowIndex) => {

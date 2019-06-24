@@ -1,13 +1,33 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 
-const WallEditor = () => {
-  const wallFormState = useSelector(store => store.editor.wallEditor);
+const WallEditor = ({ cellCoords, cellProperties, updateCellProperties }) => {
+  // TODO: Make custom hook instead of wrapper function. Make it reusable for all faces
+  const handleBaseColorChange = e => {
+    const color = e.target.value;
+    // TODO: Until we standardize the color scheme, we'll drop the leading hash. DIRTY!
+    const colorMinusHash = color.substr(1);
+    const newCellConfig = {
+      ...cellProperties,
+      textureConfig: {
+        ...cellProperties.textureConfig,
+        color: colorMinusHash,
+      }
+    }
+    updateCellProperties(cellCoords, newCellConfig);
+  }
+
+  const baseTextureType = cellProperties.textureType;
+  
   return (
     <div className="wall-editor__container">
-      <h4>Base Texture</h4>
-      <label htmlFor="base_texture">Color</label>
-      <input type="number" min="0" max="5" name="base_texture" value={ wallFormState.texture }></input>
+      <h4>Base</h4>
+      <label htmlFor="base_texture_type__color">Color</label>
+      <input 
+        type="color" 
+        name="base_texture_type__color" 
+        value={ cellProperties.textureConfig.color ? `#${cellProperties.textureConfig.color}` : '#000000' }
+        onChange={ handleBaseColorChange }
+      ></input>
       <h4>Individual Faces</h4>
       { /* Add checkboxes to enable a face */}
       { /* Replace numbers with three 0-255 fields (rgb) */}

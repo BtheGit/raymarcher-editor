@@ -23,36 +23,44 @@ const DEFAULT_CELL_FLOOR = {
   }
 }
 
-const renderCellEditor = (cell, activeCellCoords, toggleCellType) => {
+const renderCellEditor = (cell, activeCellCoords, updateCellProperties) => {
   return (
-    <div>
-      <div>
-        <h4>Cell [{ activeCellCoords.x }, {activeCellCoords.y }]</h4>
+    <>
+      <div className="cell-editor__header">
+        <h4>[{ activeCellCoords.x }, {activeCellCoords.y }]</h4>
         <input 
           type="radio" 
           value="floor" 
           id="cell-editor__floor-tab"
           checked={ cell.type === 'floor' }
-          onChange={() => toggleCellType(activeCellCoords, DEFAULT_CELL_FLOOR)}
+          onChange={() => updateCellProperties(activeCellCoords, DEFAULT_CELL_FLOOR)}
         ></input>
-        <label htmlFor="cell-editor__floor-tab">Floor</label>
+        <label htmlFor="cell-editor__floor-tab" className="cell-editor__header__tab">Floor</label>
         <input 
           type="radio" 
           value="wall" 
           id="cell-editor__wall-tab"
           checked={ cell.type === 'wall' }
-          onChange={() => toggleCellType(activeCellCoords, DEFAULT_CELL_WALL)}
+          onChange={() => updateCellProperties(activeCellCoords, DEFAULT_CELL_WALL)}
           ></input>
-        <label htmlFor="cell-editor__wall-tab">Wall</label>
+        <label htmlFor="cell-editor__wall-tab" className="cell-editor__header__tab">Wall</label>
       </div>
-      <div>
-        {
-          cell.type === 'floor'
-            ? <FloorEditor activeCellCoords={ activeCellCoords } />
-            : <WallEditor activeCellCoords={ activeCellCoords } />
-        }
-      </div>
-    </div>
+      {
+        cell.type === 'floor'
+          ? 
+            <FloorEditor 
+              cellCoords={ activeCellCoords } 
+              cellProperties={ cell } 
+              updateCellProperties={ updateCellProperties }
+            />
+          : 
+            <WallEditor 
+              cellCoords={ activeCellCoords } 
+              cellProperties={ cell } 
+              updateCellProperties={ updateCellProperties } 
+            />
+      }
+    </>
   )
 }
 
@@ -61,7 +69,7 @@ const CellEditor = () => {
   const activeCellCoords = useSelector(store => store.editor.activeCell);
   const level = useSelector(store => store.level);
   const dispatch = useDispatch();
-  const toggleCellType = useCallback((cell, properties) => dispatch(setCellProperties(cell, properties)), [dispatch]);
+  const updateCellProperties = useCallback((cell, properties) => dispatch(setCellProperties(cell, properties)), [dispatch]);
 
   let cell = null;
   if(level != null && level.map != null && level.map.grid != null && level.map.grid.length){
@@ -72,7 +80,7 @@ const CellEditor = () => {
     <div className="cell-editor__container">
       {
         cell != null
-          ? renderCellEditor(cell, activeCellCoords, toggleCellType)
+          ? renderCellEditor(cell, activeCellCoords, updateCellProperties)
           : null
       }
     </div>
