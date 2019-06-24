@@ -1,8 +1,20 @@
 import React from 'react';
 import './FloorEditor.css';
 
-const FloorEditor = ({ cellCoords, cellProperties, updateCellProperties }) => {
-  
+// TODO: TODO: TODO: Let's keep a model that we use for this in all components instead
+const DEFAULT_TEXTURE_CONFIGS = {
+  color: {
+    colorType: 'hex',
+    color: '00b09b'
+  },
+  image: {
+    name: 'default',
+  }
+}
+
+const FloorEditor = ({ cellCoords, cellProperties, updateCellProperties, textures }) => {
+  const floorTextureType = cellProperties.textureType;
+
   // TODO: Make custom hook instead of wrapper function. Make it reusable for all cell properties
   const handleFloorColorChange = e => {
     const color = e.target.value;
@@ -16,22 +28,43 @@ const FloorEditor = ({ cellCoords, cellProperties, updateCellProperties }) => {
       }
     }
     updateCellProperties(cellCoords, newCellConfig);
-  }
+  };
 
-  const floorTextureType = cellProperties.textureType;
+  const handleFloorTextureTypeSwitch = e => {
+    // No validation, but must be either 'color', 'image', or (eventually) 'gradient'.
+    const textureType = e.target.name;
+    const newCellConfig = {
+      ...cellProperties,
+      textureType,
+      textureConfig: DEFAULT_TEXTURE_CONFIGS[textureType],
+    };
+    updateCellProperties(cellCoords, newCellConfig);
+  }
 
   return (
     <div className="floor-editor__container">
       <h4>Floor</h4>
-      <input type="radio" name="floor_texture_type__color" id="floor_texture_type__color" checked={ floorTextureType === 'color' }/>
+      <input 
+        type="radio" 
+        name="color" 
+        id="floor_texture_type__color" 
+        checked={ floorTextureType === 'color' }
+        onChange={ handleFloorTextureTypeSwitch }
+      />
       <label htmlFor="floor_texture_type__color">Color</label>
 
       {/* <label htmlFor="floor_color_picker">Color</label> */}
       {/* I'm assuming hex here and that it lacks a hash. Bad! */}
       <input type="color" name="floor_color_picker" value={ `#${cellProperties.textureConfig.color}` } onChange={ handleFloorColorChange }></input>
 
-      <input type="radio" name="floor_texture_type__texture" id="floor_texture_type__texture" checked={ floorTextureType === 'texture' }/>
-      <label htmlFor="floor_texture_type__texture">Texture</label>
+      <input 
+        type="radio" 
+        name="image" 
+        id="floor_texture_type__texture" 
+        checked={ floorTextureType === 'image' }
+        onChange={ handleFloorTextureTypeSwitch }
+      />
+      <label htmlFor="floor_texture_type__texture">Image</label>
       
       {/* <input type="number" min="0" max="5" name="floor_texture" value={ floorFormState.texture }></input> */}
 

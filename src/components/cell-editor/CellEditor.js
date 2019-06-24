@@ -19,11 +19,11 @@ const DEFAULT_CELL_FLOOR = {
   textureType: 'color',
   textureConfig: { 
     colorType: 'hex',
-    color: '88BBEE'
+    color: '00b09b'
   }
 }
 
-const renderCellEditor = (cell, activeCellCoords, updateCellProperties) => {
+const renderCellEditor = (cell, activeCellCoords, updateCellProperties, textures) => {
   return (
     <>
       <div className="cell-editor__header">
@@ -52,12 +52,14 @@ const renderCellEditor = (cell, activeCellCoords, updateCellProperties) => {
               cellCoords={ activeCellCoords } 
               cellProperties={ cell } 
               updateCellProperties={ updateCellProperties }
+              textures={ textures }
             />
           : 
             <WallEditor 
               cellCoords={ activeCellCoords } 
               cellProperties={ cell } 
-              updateCellProperties={ updateCellProperties } 
+              updateCellProperties={ updateCellProperties }
+              textures={ textures }
             />
       }
     </>
@@ -68,6 +70,7 @@ const renderCellEditor = (cell, activeCellCoords, updateCellProperties) => {
 const CellEditor = () => {
   const activeCellCoords = useSelector(store => store.editor.activeCell);
   const level = useSelector(store => store.level);
+  const { textures } = level;
   const dispatch = useDispatch();
   const updateCellProperties = useCallback((cell, properties) => dispatch(setCellProperties(cell, properties)), [dispatch]);
 
@@ -80,7 +83,7 @@ const CellEditor = () => {
     <div className="cell-editor__container">
       {
         cell != null
-          ? renderCellEditor(cell, activeCellCoords, updateCellProperties)
+          ? renderCellEditor(cell, activeCellCoords, updateCellProperties, textures)
           : null
       }
     </div>
