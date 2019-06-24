@@ -1,17 +1,29 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import FloorEditor from './floor-editor';
 import WallEditor from './wall-editor';
 import { setCellProperties } from '../../store/reducers/levelReducer';
-import { updateVisibleCellEditorType } from '../../store/reducers/editorReducer';
-import { getCellType } from '../../utilities';
 import './CellEditor.css';
 
-const renderCellEditor = (cell, activeCellCoords, currentCellEditorType, updateCurrentCellEditorType) => {
-  const activeCellType = getCellType(cell);
-  if(currentCellEditorType == null){
-    updateCurrentCellEditorType(activeCellType);
+const DEFAULT_CELL_WALL = {
+  type: 'wall', 
+  textureType: 'color', 
+  textureConfig: { 
+    colorType: 'hex', 
+    color: '00b09b'
   }
+}
+
+const DEFAULT_CELL_FLOOR = {
+  type: 'floor',
+  textureType: 'color',
+  textureConfig: { 
+    colorType: 'hex',
+    color: '88BBEE'
+  }
+}
+
+const renderCellEditor = (cell, activeCellCoords, toggleCellType) => {
   return (
     <div>
       <div>
@@ -20,22 +32,22 @@ const renderCellEditor = (cell, activeCellCoords, currentCellEditorType, updateC
           type="radio" 
           value="floor" 
           id="cell-editor__floor-tab"
-          checked={ currentCellEditorType === 'floor' }
-          onChange={() => updateCurrentCellEditorType('floor')}
+          checked={ cell.type === 'floor' }
+          onChange={() => toggleCellType(activeCellCoords, DEFAULT_CELL_FLOOR)}
         ></input>
         <label htmlFor="cell-editor__floor-tab">Floor</label>
         <input 
           type="radio" 
           value="wall" 
           id="cell-editor__wall-tab"
-          checked={ currentCellEditorType === 'wall' }
-          onChange={() => updateCurrentCellEditorType('wall')}
+          checked={ cell.type === 'wall' }
+          onChange={() => toggleCellType(activeCellCoords, DEFAULT_CELL_WALL)}
           ></input>
         <label htmlFor="cell-editor__wall-tab">Wall</label>
       </div>
       <div>
         {
-          currentCellEditorType === 'floor'
+          cell.type === 'floor'
             ? <FloorEditor activeCellCoords={ activeCellCoords } />
             : <WallEditor activeCellCoords={ activeCellCoords } />
         }
@@ -46,14 +58,10 @@ const renderCellEditor = (cell, activeCellCoords, currentCellEditorType, updateC
 
 
 const CellEditor = () => {
-  const currentCellEditorType = useSelector(store => store.editor.cellEditor.visibleEditor);
   const activeCellCoords = useSelector(store => store.editor.activeCell);
   const level = useSelector(store => store.level);
   const dispatch = useDispatch();
-  const updateCurrentCellEditorType = useCallback((type) => dispatch(updateVisibleCellEditorType(type)), [dispatch]);
-
-  // const setCellProps = useCallback((coords, props) => dispatch(setCellProperties(coords, props)), [dispatch])
-  // const [currentCellEditorType, setCurrentCellEditorType] = useState('floor');
+  const toggleCellType = useCallback((cell, properties) => dispatch(setCellProperties(cell, properties)), [dispatch]);
 
   let cell = null;
   if(level != null && level.map != null && level.map.grid != null && level.map.grid.length){
@@ -64,7 +72,7 @@ const CellEditor = () => {
     <div className="cell-editor__container">
       {
         cell != null
-          ? renderCellEditor(cell, activeCellCoords, currentCellEditorType, updateCurrentCellEditorType)
+          ? renderCellEditor(cell, activeCellCoords, toggleCellType)
           : null
       }
     </div>
