@@ -1,4 +1,73 @@
 .cell-editor__container {
-  background: cornflowerblue;
   grid-area: cell;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 15px 10px -12px #222;
+}
+
+.cell-editor__container hr {
+  width: 50%;
+  margin: 10px auto;
+  background: #333;
+  height: 1px;
+  border: none;
+}
+
+.cell-editor__header {
+  text-align: center;
+}
+
+.cell-editor__header h2 {
+  color: #DDD;
+  padding: 10px 0;
+}
+
+.cell-editor__header h4 {
+  margin: 10px auto;
+}
+
+.cell-editor__header input {
+  display: none;
+}
+
+.cell-editor__header__tab {
+  display: inline-block;
+  width: 45%;
+  padding: 5px 0;
+  border-radius: 10px 15px 0 0;
+}
+
+.cell-editor__header__tab:hover {
+  filter: brightness(0.9);
+}
+
+.cell-editor__header__tab:first-of-type {
+  background: var(--floor-editor__background);
+}
+
+.cell-editor__header__tab:last-of-type {
+  background: var(--wall-editor__background);
+}
+
+
+.cell-editor__option-box {
+  padding: 5px 10px;
+  margin: 0 5px;
+}
+
+.cell-editor__option-box:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+.cell-editor__option-box.cell-editor__option-box--active {
+  box-shadow: inset 2px 2px 5px 15px -2px black;
+  background: rgba(255,255,255,0.4);
+}
+
+.cell-editor__option-box input[type=radio] {
+  display: none;
+}
+
+.cell-editor__option-box label {
+  padding-right: 10px;
 }

@@ -1,3 +1,10 @@
+:root {
+  --background-color: rgba(75, 75, 75, 0.9);
+  --floor-editor__background: rgb(98, 206, 233);
+  --wall-editor__background: #e888c8;
+  background-image: url('/editor-assets/circles_tile.jpg')
+}
+
 * {
   box-sizing: border-box;
   margin: 0;

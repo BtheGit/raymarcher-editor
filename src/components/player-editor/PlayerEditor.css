@@ -1,4 +1,12 @@
 .player-editor__container {
-  background: cadetblue;
   grid-area: player;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.player-editor__container p {
+  background: rgb(119, 91, 119);
+  color: #BBB;
+  padding: 20px 10px;
 }

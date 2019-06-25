@@ -1,6 +1,5 @@
 .preview-pane__container {
   grid-area: preview;
-  background: rgb(54, 27, 82);
   display: flex;
   justify-content: center;
   align-items: center;

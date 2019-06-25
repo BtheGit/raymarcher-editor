@@ -1,0 +1,35 @@
+.floor-editor__container {
+  flex: 1;
+  padding-top: 10px;
+  background: var(--floor-editor__background);
+  border-radius: 4px;
+}
+
+.floor-editor__container h4 {
+  display: inline-block;
+  text-align: center;
+  padding: 10px 0;
+}
+
+#ceiling_editor_toggle {
+  display: none;
+}
+
+label[for="ceiling_editor_toggle"] {
+  display: block;
+  text-align: center;
+  padding: 10px 0;
+  margin: 0 5px;
+  color: #777;
+}
+
+#ceiling_editor_toggle:checked + label[for="ceiling_editor_toggle"] {
+  background: inherit;
+  color: black;
+}
+
+label[for="ceiling_editor_toggle"]:hover {
+  background: rgba(255,255,255,0.25);
+  text-decoration: none;
+  color: #444;
+}

@@ -1,3 +1,12 @@
 .sky-editor__container {
   grid-area: sky;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sky-editor__container p {
+  background: rgb(119, 91, 119);
+  color: #BBB;
+  padding: 20px 10px;
 }

@@ -1,6 +1,12 @@
 canvas#raymarcher-main-display {
-  /* width: 100%;
-  height: auto; */
-  border: 2px solid black;
+  outline: 2px solid black;
   box-shadow: 0 14px 15px -12px black;
+}
+
+canvas#raymarcher-main-display:focus {
+  outline: 2px solid cornflowerblue;
+}
+
+canvas#raymarcher-main-display:hover {
+  filter: brightness(1.05);
 }

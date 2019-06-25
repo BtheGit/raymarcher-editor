@@ -1,4 +1,12 @@
 .world-settings-editor__container {
-  background: violet;
   grid-area: world;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.world-settings-editor__container p {
+  background: rgb(119, 91, 119);
+  color: #BBB;
+  padding: 20px 10px;
 }

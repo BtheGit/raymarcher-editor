@@ -1,3 +1,21 @@
 .output-editor__container {
   grid-area: output;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.output-editor__container button {
+  border: 1px solid black;
+  padding: 5px;
+  margin: 15px;
+  width: 60%;
+  height: 40px;
+  font-size: 1.1rem;
+  box-shadow: 0 5px 15px -10px #000;
+}
+
+.output-editor__container button:hover {
+  box-shadow: 0 10px 15px -10px #000;
+  background: #EEE;
 }
