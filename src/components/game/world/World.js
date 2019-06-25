@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
+import { useDispatch } from 'react-redux';
+import { updateEditor } from '../../../store/reducers/editorReducer';
 import WorldEngine from 'raymarcher';
 
 const renderWorld = WorldEngine({
@@ -9,11 +11,17 @@ const renderWorld = WorldEngine({
 });
 
 const World = props => {
+  const dispatch = useDispatch();
+  const updateEditorState = useCallback((key, prop) => {
+    dispatch(updateEditor(key, prop))
+  }, [dispatch])
   const [ world, saveWorldInstance ] = useState(null);
   useEffect(() => {
     async function updateWorld(){
       if(!world){
         const world = await renderWorld(props.WAD);
+        const textureList = world.getTextureList();
+        updateEditorState('textureList', textureList);
         saveWorldInstance(world);
       }
       else {
