@@ -1,6 +1,7 @@
 // Actions
 const SELECT_ACTIVE_CELL = 'SELECT ACTIVE CELL';
 const UPDATE_VISIBLE_CELL_EDITOR = 'UPDATE VISIBLE CELL EDITOR';
+const UPDATE_EDITOR = 'UPDATE EDITOR';
 
 export const selectActiveCell = (x, y, type) => ({
   type: SELECT_ACTIVE_CELL,
@@ -18,7 +19,16 @@ export const updateVisibleCellEditorType = type => ({
   }
 })
 
+export const updateEditor = (key, prop) => ({
+  type: UPDATE_EDITOR,
+  payload: {
+    key, 
+    prop,
+  }
+})
+
 const initialState = {
+  textureList: [],
   activeCell: { x: 0, y: 0 },
   cellEditor: {
     // null | 'floor' | 'wall'
@@ -43,6 +53,11 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch(action.type){
+    case UPDATE_EDITOR:
+      return {
+        ...state,
+        [action.payload.key]: action.payload.prop,
+      }
     case SELECT_ACTIVE_CELL:
       return { 
         ...state, 
