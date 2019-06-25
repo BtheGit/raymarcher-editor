@@ -23,11 +23,11 @@ const DEFAULT_CELL_FLOOR = {
   }
 }
 
-const renderCellEditor = (cell, activeCellCoords, updateCellProperties, textures) => {
+const renderCellEditor = (cell, activeCellCoords, updateCellProperties, textureList) => {
   return (
     <>
       <div className="cell-editor__header">
-        <h4>[{ activeCellCoords.x }, {activeCellCoords.y }]</h4>
+        <h2>[{ activeCellCoords.x }, {activeCellCoords.y }]</h2>
         <input 
           type="radio" 
           value="floor" 
@@ -52,14 +52,14 @@ const renderCellEditor = (cell, activeCellCoords, updateCellProperties, textures
               cellCoords={ activeCellCoords } 
               cellProperties={ cell } 
               updateCellProperties={ updateCellProperties }
-              textures={ textures }
+              textureList={ textureList }
             />
           : 
             <WallEditor 
               cellCoords={ activeCellCoords } 
               cellProperties={ cell } 
               updateCellProperties={ updateCellProperties }
-              textures={ textures }
+              textureList={ textureList }
             />
       }
     </>
@@ -70,7 +70,7 @@ const renderCellEditor = (cell, activeCellCoords, updateCellProperties, textures
 const CellEditor = () => {
   const activeCellCoords = useSelector(store => store.editor.activeCell);
   const level = useSelector(store => store.level);
-  const { textures } = level;
+  const textureList = useSelector(store => store.editor.textureList);
   const dispatch = useDispatch();
   const updateCellProperties = useCallback((cell, properties) => dispatch(setCellProperties(cell, properties)), [dispatch]);
 
@@ -83,7 +83,7 @@ const CellEditor = () => {
     <div className="cell-editor__container">
       {
         cell != null
-          ? renderCellEditor(cell, activeCellCoords, updateCellProperties, textures)
+          ? renderCellEditor(cell, activeCellCoords, updateCellProperties, textureList)
           : null
       }
     </div>

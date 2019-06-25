@@ -37,7 +37,6 @@ const FloorEditor = ({ cellCoords, cellProperties, updateCellProperties, texture
 
   const handleFloorImageChange = e => {
     const name = e.target.value;
-    // TODO: Until we standardize the color scheme, we'll drop the leading hash. DIRTY!
     const newCellConfig = {
       ...cellProperties,
       textureType: 'image',
@@ -65,7 +64,6 @@ const FloorEditor = ({ cellCoords, cellProperties, updateCellProperties, texture
     const color = e.target.value;
     // TODO: Until we standardize the color scheme, we'll drop the leading hash. DIRTY!
     const colorMinusHash = color.substr(1);
-    console.log(colorMinusHash)
     const newCellConfig = {
       ...cellProperties,
       ceilingConfig: {
@@ -81,7 +79,6 @@ const FloorEditor = ({ cellCoords, cellProperties, updateCellProperties, texture
 
   const handleCeilingImageChange = e => {
     const name = e.target.value;
-    console.log(name)
     // TODO: Until we standardize the color scheme, we'll drop the leading hash. DIRTY!
     const newCellConfig = {
       ...cellProperties,
@@ -129,10 +126,9 @@ const FloorEditor = ({ cellCoords, cellProperties, updateCellProperties, texture
       return null;
     }
     const ceilingTextureType = ceilingConfig.textureType;
-    console.log(ceilingTextureType)
     return (
       <>
-        <div className={ `floor-editor__option-box ${ ceilingTextureType === 'color' ? 'floor-editor__option-box--active' : '' }` }>
+        <div className={ `cell-editor__option-box ${ ceilingTextureType === 'color' ? 'cell-editor__option-box--active' : '' }` }>
           <form>
             <input 
               type="radio" 
@@ -152,7 +148,7 @@ const FloorEditor = ({ cellCoords, cellProperties, updateCellProperties, texture
             ></input>
           </form>
         </div>
-        <div className={ `floor-editor__option-box ${ ceilingTextureType === 'image' ? 'floor-editor__option-box--active' : '' }` }>
+        <div className={ `cell-editor__option-box ${ ceilingTextureType === 'image' ? 'cell-editor__option-box--active' : '' }` }>
           <form>
             <input 
               type="radio" 
@@ -183,8 +179,7 @@ const FloorEditor = ({ cellCoords, cellProperties, updateCellProperties, texture
 
   return (
     <div className="floor-editor__container">
-      <h4>Floor</h4>
-      <div className={`floor-editor__option-box ${ floorTextureType === 'color' ? 'floor-editor__option-box--active' : '' }`}>
+      <div className={`cell-editor__option-box ${ floorTextureType === 'color' ? 'cell-editor__option-box--active' : '' }`}>
         <form>
           <input 
             type="radio" 
@@ -204,7 +199,7 @@ const FloorEditor = ({ cellCoords, cellProperties, updateCellProperties, texture
           ></input>
         </form>
       </div>
-      <div className={ `floor-editor__option-box ${ floorTextureType === 'image' ? 'floor-editor__option-box--active' : '' }` }>
+      <div className={ `cell-editor__option-box ${ floorTextureType === 'image' ? 'cell-editor__option-box--active' : '' }` }>
         <form>
           <input 
             type="radio" 
@@ -229,14 +224,15 @@ const FloorEditor = ({ cellCoords, cellProperties, updateCellProperties, texture
           </select>
         </form>
       </div>
-      
-      <h4>Ceiling</h4>
+      <hr/>
       <input 
         name="ceilingConfig" 
+        id="ceiling_editor_toggle"
         type="checkbox" 
         checked={ cellProperties.ceilingConfig || false } 
         onChange={ handleCeilingToggle }
       ></input>
+      <label htmlFor="ceiling_editor_toggle">Ceiling</label>
       { 
         renderCeilingEditor(cellProperties.ceilingConfig)
       }

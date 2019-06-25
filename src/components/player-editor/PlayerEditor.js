@@ -3,7 +3,9 @@ import './PlayerEditor.css';
 
 const PlayerEditor = () => {
   return(
-    <div className="player-editor__container">PlayerEditor</div>
+    <div className="player-editor__container">
+      <p>PlayerEditor</p>
+    </div>
   )
 };
 
