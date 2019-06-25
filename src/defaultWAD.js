@@ -1,5 +1,30 @@
+const textureNames = [
+  'concrete_brick1.jpg',
+  'concrete_brick2.jpg',
+  'concrete_tile1.jpg',
+  'concrete_tile2.jpg',
+  'concrete_tile3.jpg',
+  'concrete1.jpg',
+  'concrete2.jpg',
+  'floor_carpet1.jpg',
+  'floor_grass1.jpg',
+  'floor1.jpg',
+  'fresco1.jpg',
+  'hedge1.jpg',
+  'hedge2.jpg',
+  'light_brick1.jpg',
+  'marble1.jpg',
+  'plaster1.jpg',
+  'red_brick1.jpg',
+  'rusted_steel1.jpg',
+  'stone2.jpg',
+  'stripes_creamsicle1.jpg',
+]
+
+const PATH = process.env.PUBLIC_URL + '/textures/';
+
 export default {
-  textures: [],
+  textures: textureNames.map(name => PATH + name),
   sprites: [],
   tiles: [],
   map: {
