@@ -52,45 +52,14 @@ Parts (high level):
 - Toggles for showing/hiding walls, sprites, textures, etc.
 - A preview pane. This will be the actual game running live (with controls only functioning when the window is in focus of course.) Having it run inside the react app (as a third party library of course) will make sharing state a lot easier. The game will need to have an editor mode set (to let it know it needs to be hot swappable.) First pass will just be reseting every time a change is made, but hopefully most pieces of state will be hot swappable.
 
-Pages:
-
-For now, we're looking at one view. If I need auth and logins, that will change. If I want a browseable library of existing maps (once a backend exists) that will change more.
-
-- [x] First step:
-    Set up app structure. No routing for now. Use redux for global state. When we get to loading new textures (which will be async) we'll can probably do fine with just thunks.
-    We'll want the basic store, an editor pane and preview pane.
-- [x] Second step:
-    Getting the game integrated with a react app as agnostically as possible (if need be we can use event messaging to connect them. For now, just run it in the pane with it's init state set to the store (it will refresh everytime state changes) - later hot swapping.
-- [x] Third:
-    An initial grid generator form. Just height and width. Until later, this will be the only time this is selectable.
-- [x] Fourth:
-    A reset. Until everything can be edited after creation, we'll need a way to start fresh.
-- [x] Fifth:
-    A sky editor. Be able to set gradient. (We'll deal with textures later.)
-- [x] Sixth:
-    The map grid. Events attached to each cell.
-- [x] Seventh:
-    Clicking a cell brings up a cell editor.
-- [x] Eigth:
-    A cell editor allows you to choose floor or wall. With default textures, no ceiling. (The rest can come later).
-- [x] Ninth.
-    Be able to export the current WAD as a JSON. (We'll deal with the textures later.)
-MVP done!
 
 
 Plan:
-- ~~Export as JSON~~ Right now we can dump the store's level state to the console. Good enough for MVP
-- ~~Give cell editor a save button~~ Doing live updates instead
-- Allow floors to have a ceiling
-- Allow multiple faces for walls
 - Create a sky editor.
 - MVP One color
 - Allow for gradients with unlimited numbers of stops defined.
-- Set up base textures (built ins)
 - We'll start with 2 floor, 4 wall, and 3 sky texture options.
 - Allow for sky to be gradient or texture
-- allow for floor and ceiling to be either
-- allow for wall faces to be either
 
 Notes:
 - We need to better dynamically tie the editors into the schema of the level since we are updating the level state directly.
@@ -109,3 +78,6 @@ Notes:
 - Also, possible caching of previous selection so you can quickly copy settings.
 - Or, actualy cell copy paste!!
 - Also, time to start thinking about multi-select!
+
+BUGS:
+- Multiple clicks often required to switch texture type on option boxes

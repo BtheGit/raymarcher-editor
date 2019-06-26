@@ -64,7 +64,7 @@ const WallEditor = ({ cellCoords, cellProperties, updateCellProperties, textureL
     const faceTextureType = faceConfig.textureType;
 
     // TODO: Make custom hook instead of wrapper function. Make it reusable for all faces
-    const handleFaceColorChange = e => {
+    const handleFaceColorChange = faceName => e => {
       const color = e.target.value;
       // TODO: Until we standardize the color scheme, we'll drop the leading hash. DIRTY!
       const colorMinusHash = color.substr(1);
@@ -84,7 +84,7 @@ const WallEditor = ({ cellCoords, cellProperties, updateCellProperties, textureL
       updateCellProperties(cellCoords, newCellConfig);
     }
 
-    const handleFaceTextureTypeSwitch = e => {
+    const handleFaceTextureTypeSwitch = faceName => e => {
       // No validation, but must be either 'color', 'image', or (eventually) 'gradient'.
       const textureType = e.target.name;
       const newCellConfig = {
@@ -100,7 +100,7 @@ const WallEditor = ({ cellCoords, cellProperties, updateCellProperties, textureL
       updateCellProperties(cellCoords, newCellConfig);
     }
 
-    const handleFaceImageChange = e => {
+    const handleFaceImageChange = faceName => e => {
       const name = e.target.value;
       const newCellConfig = {
         ...cellProperties,
@@ -124,17 +124,17 @@ const WallEditor = ({ cellCoords, cellProperties, updateCellProperties, textureL
             <input 
               type="radio" 
               name="color" 
-              id="face_texture_type__color"
+              id={ `${ faceName }_face_texture_type__color` }
               checked={ faceTextureType === 'color' }
-              onChange={ handleFaceTextureTypeSwitch }
+              onChange={ handleFaceTextureTypeSwitch(faceName) }
             />
-            <label htmlFor="face_texture_type__color">Color</label>
+            <label htmlFor={ `${ faceName }_face_texture_type__color` }>Color</label>
             {/* I'm assuming hex here and that it lacks a hash. Bad! */}
             <input 
               type="color" 
               name="face_color_picker"
               value={ `#${ faceConfig.textureConfig.color }` } 
-              onChange={ handleFaceColorChange }
+              onChange={ handleFaceColorChange(faceName) }
               disabled={ faceTextureType !== 'color' }
             ></input>
           </form>
@@ -144,16 +144,16 @@ const WallEditor = ({ cellCoords, cellProperties, updateCellProperties, textureL
             <input 
               type="radio" 
               name="image" 
-              id="face_texture_type__texture" 
+              id={ `${ faceName }_face_texture_type__texture` }
               checked={ faceTextureType === 'image' }
-              onChange={ handleFaceTextureTypeSwitch }
+              onChange={ handleFaceTextureTypeSwitch(faceName) }
             />
-            <label htmlFor="face_texture_type__texture">Image</label>
+            <label htmlFor={ `${ faceName }_face_texture_type__texture` }>Image</label>
 
             <select
               disabled={ faceTextureType !== 'image' }
               value={ faceConfig.textureConfig.name }
-              onChange={ handleFaceImageChange }
+              onChange={ handleFaceImageChange(faceName) }
             >
               <option value="default">Default</option>
               {
@@ -256,10 +256,10 @@ const WallEditor = ({ cellCoords, cellProperties, updateCellProperties, textureL
                   onChange={ handleFaceToggle }
                 ></input>
                 <label htmlFor={ `${ faceName }_editor_toggle` } className="face-editor__header">{ faceName }</label>
-                { 
-                  renderFace(cellCoords, cellProperties, faceName, textureList)
-                }
               </form>
+              { 
+                renderFace(cellCoords, cellProperties, faceName, textureList)
+              }
             </>
           )
         })
