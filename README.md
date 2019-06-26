@@ -105,3 +105,7 @@ Notes:
 - Add a compass overlay for the game and the grid and add in the player position and direction, so it's clear what is being faced.
 - Can use a canvas overlay (with no pointer events) on the grid to still use native elements but have the player move freely. (Otherwise we'll need to consider switching the whole thing to canvas).
 - Need to store references to image file paths for using as background urls of svgs.
+- Color pickers might need the ability to manually specify the hex.
+- Also, possible caching of previous selection so you can quickly copy settings.
+- Or, actualy cell copy paste!!
+- Also, time to start thinking about multi-select!
