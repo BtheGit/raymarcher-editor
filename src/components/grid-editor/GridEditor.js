@@ -73,22 +73,27 @@ const GridEditor = () => {
                   debugger
                   throw new Error('Missing textureConfig property');
                 }
-                const color = cellTextureType === 'color' ? '#' + cell.textureConfig.color : 'cornflowerblue';
+                const baseColor = cellTextureType === 'color' ? '#' + cell.textureConfig.color : 'cornflowerblue';
+                const { faces } = cell;
+                const northColor = (faces.north || {}).textureType === 'color' ? '#' + faces.north.textureConfig.color : baseColor;
+                const eastColor = (faces.east || {}).textureType === 'color' ? '#' + faces.east.textureConfig.color : baseColor;
+                const southColor = (faces.south || {}).textureType === 'color' ? '#' + faces.south.textureConfig.color : baseColor;
+                const westColor = (faces.west || {}).textureType === 'color' ? '#' + faces.west.textureConfig.color : baseColor;
       
                 return (
                   <div 
                     className={`grid-editor__cell ${ isActiveCell(columnIndex, rowIndex) ? 'grid-editor__cell--active' : '' }`}
                     key={ columnIndex } 
-                    style={{ background: color }} 
+                    style={{ background: baseColor }} 
                     onClick={ () => selectCell(columnIndex, rowIndex) }
                   >
                     {
                       cell.type === 'wall' &&
                         <svg className="grid-editor__cell-wall" viewBox='0 0 100 100'>
-                          <polygon points='5,5 50,50 95,5' style={{ fill: color, stroke: 'black', strokeLinejoin: 'round' }} />
-                          <polygon points='5,5 50,50 5,95' style={{ fill: color, stroke: 'black', strokeLinejoin: 'round' }} />
-                          <polygon points='5,95 50,50 95,95' style={{ fill: color, stroke: 'black', strokeLinejoin: 'round' }} />
-                          <polygon points='95,5 50,50 95,95' style={{ fill: color, stroke: 'black', strokeLinejoin: 'round' }} />
+                          <polygon points='0,0 50,50 100,0' style={{ fill: northColor, stroke: 'black', strokeWidth: '2', strokeLinejoin: 'round' }} />
+                          <polygon points='0,0 50,50 0,100' style={{ fill: westColor, stroke: 'black', strokeWidth: '2', strokeLinejoin: 'round' }} />
+                          <polygon points='0,100 50,50 100,100' style={{ fill: southColor, stroke: 'black', strokeWidth: '2', strokeLinejoin: 'round' }} />
+                          <polygon points='100,0 50,50 100,100' style={{ fill: eastColor, stroke: 'black', strokeWidth: '2', strokeLinejoin: 'round' }} />
                         </svg>
                     }
                   </div>
