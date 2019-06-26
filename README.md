@@ -100,3 +100,7 @@ Notes:
 - Add in a cache of the previous tab for the floor editor so you don't lose state when tabbing back and forth (medium priority).
 - Remove support for color formats. Use only hex. When it has to be different we'll convert on the fly. Much nicer to just be able to make assumptions.
 - Could make it impossible to switch outerwalls to floors. That would save some time debugging the overflow crashes from the engine.
+- Make a custom dropdown to use for textures that has a preview panel for each texture.
+- Or make a texture picker modal.
+- Add a compass overlay for the game and the grid and add in the player position and direction, so it's clear what is being faced.
+- Can use a canvas overlay (with no pointer events) on the grid to still use native elements but have the player move freely. (Otherwise we'll need to consider switching the whole thing to canvas).

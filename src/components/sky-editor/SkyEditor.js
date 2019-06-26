@@ -24,7 +24,7 @@ import './SkyEditor.css';
 const SkyEditor = () => {
   return (
     <div className="sky-editor__container">
-      <p>Sky Editor</p>
+      <p>SkyEditor</p>
     </div>
   )
 }

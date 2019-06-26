@@ -70,6 +70,7 @@ const GridEditor = () => {
                 const cellTextureType = cell.textureType;
                 // For the first MVP, we'll just use colors. If there is a texture code, we'll use a hardcoded fallback.
                 if(cell.textureConfig == undefined){
+                  debugger
                   throw new Error('Missing textureConfig property');
                 }
                 const color = cellTextureType === 'color' ? '#' + cell.textureConfig.color : 'cornflowerblue';

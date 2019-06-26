@@ -13,6 +13,8 @@ const DEFAULT_TEXTURE_CONFIGS = {
 }
 
 const WallEditor = ({ cellCoords, cellProperties, updateCellProperties, textureList }) => {
+  const baseTextureType = cellProperties.textureType;
+
   // TODO: Make custom hook instead of wrapper function. Make it reusable for all faces
   const handleBaseColorChange = e => {
     const color = e.target.value;
@@ -50,14 +52,125 @@ const WallEditor = ({ cellCoords, cellProperties, updateCellProperties, textureL
       }
     }
     updateCellProperties(cellCoords, newCellConfig);
-
   }
 
-  const baseTextureType = cellProperties.textureType;
+  // This is clearly ready for componentization.
+  const renderFace = (cellCoords, cellProperties, faceName, textureList) => {
+    const faceConfig = cellProperties.faces[faceName];
+    if(!faceConfig){
+      return null;
+    }
+
+    const faceTextureType = faceConfig.textureType;
+
+    // TODO: Make custom hook instead of wrapper function. Make it reusable for all faces
+    const handleFaceColorChange = e => {
+      const color = e.target.value;
+      // TODO: Until we standardize the color scheme, we'll drop the leading hash. DIRTY!
+      const colorMinusHash = color.substr(1);
+      const newCellConfig = {
+        ...cellProperties,
+        faces: {
+          ...cellProperties.faces,
+          [faceName]: {
+            textureType: 'color',
+            textureConfig: {
+              colorType: 'hex',
+              color: colorMinusHash,
+            }
+          },
+        }
+      }
+      updateCellProperties(cellCoords, newCellConfig);
+    }
+
+    const handleFaceTextureTypeSwitch = e => {
+      // No validation, but must be either 'color', 'image', or (eventually) 'gradient'.
+      const textureType = e.target.name;
+      const newCellConfig = {
+        ...cellProperties,
+        faces: {
+          ...cellProperties.faces,
+          [faceName]: {
+            textureType,
+            textureConfig: DEFAULT_TEXTURE_CONFIGS[textureType],
+          },
+        },
+      };
+      updateCellProperties(cellCoords, newCellConfig);
+    }
+
+    const handleFaceImageChange = e => {
+      const name = e.target.value;
+      const newCellConfig = {
+        ...cellProperties,
+        faces: {
+          ...cellProperties.faces,
+          [faceName]: {
+            textureType: 'image',
+            textureConfig: {
+              name,
+            },
+          },
+        },
+      }
+      updateCellProperties(cellCoords, newCellConfig);
+    }
+
+    return (
+      <>
+        <div className={`cell-editor__option-box ${ faceTextureType === 'color' ? 'cell-editor__option-box--active' : '' }`}>
+          <form>
+            <input 
+              type="radio" 
+              name="color" 
+              id="face_texture_type__color"
+              checked={ faceTextureType === 'color' }
+              onChange={ handleFaceTextureTypeSwitch }
+            />
+            <label htmlFor="face_texture_type__color">Color</label>
+            {/* I'm assuming hex here and that it lacks a hash. Bad! */}
+            <input 
+              type="color" 
+              name="face_color_picker"
+              value={ `#${ faceConfig.textureConfig.color }` } 
+              onChange={ handleFaceColorChange }
+              disabled={ faceTextureType !== 'color' }
+            ></input>
+          </form>
+        </div>
+        <div className={ `cell-editor__option-box ${ faceTextureType === 'image' ? 'cell-editor__option-box--active' : '' }` }>
+          <form>
+            <input 
+              type="radio" 
+              name="image" 
+              id="face_texture_type__texture" 
+              checked={ faceTextureType === 'image' }
+              onChange={ handleFaceTextureTypeSwitch }
+            />
+            <label htmlFor="face_texture_type__texture">Image</label>
+
+            <select
+              disabled={ faceTextureType !== 'image' }
+              value={ faceConfig.textureConfig.name }
+              onChange={ handleFaceImageChange }
+            >
+              <option value="default">Default</option>
+              {
+                textureList.map((texture, i) => (
+                  <option value={ texture } key={ i }>{ texture }</option>
+                ))
+              }
+            </select>
+          </form>
+        </div>
+      </>
+    )
+  }
   
   return (
     <div className="wall-editor__container">
-      <h4>Base</h4>
+      <h3>Base</h3>
       <div className={`cell-editor__option-box ${ baseTextureType === 'color' ? 'cell-editor__option-box--active' : '' }`}>
         <form>
           <input 
@@ -104,21 +217,53 @@ const WallEditor = ({ cellCoords, cellProperties, updateCellProperties, textureL
         </form>
       </div>
       <hr />
-      <h4>Faces</h4>
-      { /* Add checkboxes to enable a face */}
-      { /* Replace numbers with three 0-255 fields (rgb) */}
-      <h5>North</h5>
-      <label htmlFor="north_texture">Color</label>
-      <input type="number" min="0" max="5" name="north_texture"></input>
-      <h5>West</h5>
-      <label htmlFor="west_texture">Color</label>
-      <input type="number" min="0" max="5" name="west_texture"></input>
-      <h5>South</h5>
-      <label htmlFor="south_texture">Color</label>
-      <input type="number" min="0" max="5" name="south_texture"></input>
-      <h5>East</h5>
-      <label htmlFor="east_texture">Color</label>
-      <input type="number" min="0" max="5" name="east_texture"></input>
+      <h3>Faces</h3>
+      {
+        ['north', 'west', 'south', 'east'].map(faceName => {
+          const face = cellProperties.faces[faceName];
+
+          const handleFaceToggle = e => {
+            const checked = e.target.checked;
+            if(!checked){
+              const { [faceName]: unwantedFace, ...otherFaces } = cellProperties.faces;
+              cellProperties.faces = otherFaces;
+              updateCellProperties(cellCoords, cellProperties);
+            }
+            else {
+              const { textureType, textureConfig } = cellProperties;
+              const newCellConfig = {
+                ...cellProperties,
+                faces: {
+                  ...cellProperties.faces,
+                  [faceName]: {
+                    textureType,
+                    textureConfig,
+                  }
+                }
+              }
+              updateCellProperties(cellCoords, newCellConfig);
+            }        
+          };
+
+          return (
+            <>
+              <form className="face-editor__container">
+                <input 
+                  name={ `faceConfig` }
+                  id={ `${ faceName }_editor_toggle` }
+                  type="checkbox" 
+                  checked={ face || false } 
+                  onChange={ handleFaceToggle }
+                ></input>
+                <label htmlFor={ `${ faceName }_editor_toggle` } className="face-editor__header">{ faceName }</label>
+                { 
+                  renderFace(cellCoords, cellProperties, faceName, textureList)
+                }
+              </form>
+            </>
+          )
+        })
+      }
     </div>
   )
 };

@@ -11,6 +11,12 @@ const DEFAULT_CELL_WALL = {
   textureConfig: { 
     colorType: 'hex', 
     color: '00b09b'
+  },
+  faces: {
+    north: null,
+    east: null,
+    south: null,
+    west: null,
   }
 }
 
