@@ -78,6 +78,9 @@ Notes:
 - Also, possible caching of previous selection so you can quickly copy settings.
 - Or, actualy cell copy paste!!
 - Also, time to start thinking about multi-select!
+- Remove default texture
+- Coordinate player position with game (current start position is maintained in state).
 
 BUGS:
 - Multiple clicks often required to switch texture type on option boxes
+- Texture backgrounds on grid editor not set to cover
