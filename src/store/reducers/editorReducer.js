@@ -29,6 +29,7 @@ export const updateEditor = (key, prop) => ({
 
 const initialState = {
   textureList: [],
+  textureMap: {},
   activeCell: { x: 0, y: 0 },
   cellEditor: {
     // null | 'floor' | 'wall'

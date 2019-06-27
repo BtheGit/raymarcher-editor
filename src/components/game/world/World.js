@@ -21,7 +21,10 @@ const World = props => {
       if(!world){
         const world = await renderWorld(props.WAD);
         const textureList = world.getTextureList();
+        const textureMap = world.getTextureMap();
         updateEditorState('textureList', textureList);
+        // We probably don't need both of these. But we'll refactor later.
+        updateEditorState('textureMap', textureMap);
         saveWorldInstance(world);
       }
       else {

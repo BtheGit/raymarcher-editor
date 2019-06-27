@@ -23,8 +23,8 @@ const textureNames = [
 
 const PATH = process.env.PUBLIC_URL + '/textures/';
 
-const WALL = { type: 'wall', textureType: 'color', textureConfig: { colorType: 'hex', color: '00b09b'}, faces: { north: null, east: null, south: null, west: null } };
-const FLOOR = { type: 'floor', textureType: 'image', textureConfig: { name: 'default' }, };
+const WALL = { type: 'wall', textureType: 'image', textureConfig: { name: 'red_brick1' }, faces: { north: null, east: null, south: null, west: null } };
+const FLOOR = { type: 'floor', textureType: 'image', textureConfig: { name: 'floor_grass1' }, };
 
 export default {
   textures: textureNames.map(name => PATH + name),
@@ -46,7 +46,7 @@ export default {
       [WALL,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,WALL],
       [WALL,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,WALL],
       [WALL,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,WALL],
-      [WALL,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,{ type: 'wall', textureType: 'color', textureConfig: { colorType: 'hex', color: '00b09b'}, faces: { north: null, east: null, west: null, south: { textureType: 'image', textureConfig: { name: 'default' }} }},FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,WALL],
+      [WALL,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,{ type: 'wall', textureType: 'color', textureConfig: { colorType: 'hex', color: '00b09b'}, faces: { north: null, east: null, west: null, south: null }},FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,WALL],
       [WALL,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,WALL,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,WALL],
       [WALL,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,WALL],
       [WALL,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,{ type: 'floor', textureType: 'color', textureConfig: { colorType: 'hex', color: 'DD4599'} },FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,WALL],

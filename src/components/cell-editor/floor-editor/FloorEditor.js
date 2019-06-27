@@ -8,7 +8,7 @@ const DEFAULT_TEXTURE_CONFIGS = {
     color: '00b09b'
   },
   image: {
-    name: 'default',
+    name: 'floor_grass1',
   }
 }
 

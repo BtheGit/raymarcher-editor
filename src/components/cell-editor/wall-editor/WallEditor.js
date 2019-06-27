@@ -8,7 +8,7 @@ const DEFAULT_TEXTURE_CONFIGS = {
     color: '00b09b'
   },
   image: {
-    name: 'default',
+    name: 'red_brick1',
   }
 }
 
@@ -55,7 +55,7 @@ const WallEditor = ({ cellCoords, cellProperties, updateCellProperties, textureL
   }
 
   // This is clearly ready for componentization.
-  const renderFace = (cellCoords, cellProperties, faceName, textureList) => {
+  const renderFace = (cellCoords, cellProperties, faceName, textureList, key) => {
     const faceConfig = cellProperties.faces[faceName];
     if(!faceConfig){
       return null;
@@ -119,7 +119,7 @@ const WallEditor = ({ cellCoords, cellProperties, updateCellProperties, textureL
 
     return (
       <>
-        <div className={`cell-editor__option-box ${ faceTextureType === 'color' ? 'cell-editor__option-box--active' : '' }`}>
+        <div  key={ key } className={`cell-editor__option-box ${ faceTextureType === 'color' ? 'cell-editor__option-box--active' : '' }`}>
           <form>
             <input 
               type="radio" 
@@ -139,7 +139,7 @@ const WallEditor = ({ cellCoords, cellProperties, updateCellProperties, textureL
             ></input>
           </form>
         </div>
-        <div className={ `cell-editor__option-box ${ faceTextureType === 'image' ? 'cell-editor__option-box--active' : '' }` }>
+        <div  key={ key } className={ `cell-editor__option-box ${ faceTextureType === 'image' ? 'cell-editor__option-box--active' : '' }` }>
           <form>
             <input 
               type="radio" 
@@ -219,7 +219,7 @@ const WallEditor = ({ cellCoords, cellProperties, updateCellProperties, textureL
       <hr />
       <h3>Faces</h3>
       {
-        ['north', 'west', 'south', 'east'].map(faceName => {
+        ['north', 'west', 'south', 'east'].map((faceName, key) => {
           const face = cellProperties.faces[faceName];
 
           const handleFaceToggle = e => {
@@ -247,7 +247,7 @@ const WallEditor = ({ cellCoords, cellProperties, updateCellProperties, textureL
 
           return (
             <>
-              <form className="face-editor__container">
+              <form className="face-editor__container" key={ key }>
                 <input 
                   name={ `faceConfig` }
                   id={ `${ faceName }_editor_toggle` }
@@ -258,7 +258,7 @@ const WallEditor = ({ cellCoords, cellProperties, updateCellProperties, textureL
                 <label htmlFor={ `${ faceName }_editor_toggle` } className="face-editor__header">{ faceName }</label>
               </form>
               { 
-                renderFace(cellCoords, cellProperties, faceName, textureList)
+                renderFace(cellCoords, cellProperties, faceName, textureList, key)
               }
             </>
           )

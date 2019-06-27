@@ -9,7 +9,7 @@
 }
 
 .grid-editor__grid-container {
-  background: #BBB;
+  background: white;
   box-shadow: 0 15px 15px -12px #333;
   margin-top: 20px;
 }
@@ -36,5 +36,5 @@
 }
 
 .grid-editor__cell-wall {
-  background: black;
+  border: 1px solid black;
 }
