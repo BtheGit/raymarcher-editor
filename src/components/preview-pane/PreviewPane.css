@@ -3,4 +3,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+}
+
+
+.preview-pane__container::after {
+  content: 'WASD to move';
+  display: block;
+  color: #DDD;
+  width: 200px;
+  text-align: center;
+  background: none;
+  position: absolute;
+  top: 0;
+  right: calc(50% - 100px);
 }
