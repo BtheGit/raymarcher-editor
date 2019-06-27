@@ -86,3 +86,21 @@ Notes:
 BUGS:
 - Multiple clicks often required to switch texture type on option boxes
 - Texture backgrounds on grid editor not set to cover
+
+Plan for today:
+
+EDITOR MODE:
+- Add in editor mode to the engine.
+- Add in sub/pub for registering listeners to the engine in editor mode.
+- Disable raymarcher caching to session storage in editor mode.
+
+PLAYER EDITOR:
+- Have editor listen to player position.
+- Display player position
+- Have player position save button grab current position and overwrite default start position with it.
+- create a canvas overlay on grid editor and display player position live.
+- Optional: overlay a compass on the POV pane.
+
+SESSION STORAGE:
+- Create a backup to session storage for the editor.
+- Create a reset button (to allow easy clears of undesired session storage cache)

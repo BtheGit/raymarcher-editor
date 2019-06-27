@@ -60,7 +60,7 @@ export default {
       [EXT_WALL,EXT_WALL,EXT_WALL,EXT_WALL,EXT_WALL,EXT_WALL,EXT_WALL,EXT_WALL,EXT_WALL,EXT_WALL,EXT_WALL,EXT_WALL,EXT_WALL,EXT_WALL,EXT_WALL,EXT_WALL,EXT_WALL,EXT_WALL,EXT_WALL,EXT_WALL,EXT_WALL,EXT_WALL,EXT_WALL,EXT_WALL],    
     ],
     playerPos: {
-      x: 8,
+      x: 9.5,
       y: 20
     },
     playerDir: {
@@ -74,12 +74,16 @@ export default {
     skyGradient: [
       {
         stop: 0,
-        color: "purple"
+        color: "#7AA1D2"
+      },
+      {
+        stop: .8,
+        color: "#DBD4B4"
       },
       {
         stop: 1,
-        color: "red"
-      },
+        color: "#CC95C0"
+      }
     ],
   },
 }
