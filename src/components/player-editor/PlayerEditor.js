@@ -4,7 +4,7 @@ import './PlayerEditor.css';
 const PlayerEditor = () => {
   return(
     <div className="player-editor__container">
-      <p>PlayerEditor</p>
+      <button className="editor__save-button">Save Current Position as Starting Position</button>
     </div>
   )
 };

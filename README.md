@@ -79,7 +79,9 @@ Notes:
 - Or, actualy cell copy paste!!
 - Also, time to start thinking about multi-select!
 - Remove default texture
-- Coordinate player position with game (current start position is maintained in state).
+- Coordinate player position with game (current start position is maintained in state). Subscribe to method, have game publish regular updates in editor mode.
+- Instead of letting the creator set the grid size we could also have several fixed starting maps to choose from. Or we could let them set the size of the grid (within constraints) and the base floor and outer wall texture values. This would be a generator function. We could also have a number of starting maps available (or any map could be loaded as a starting map potentially) to build on top of.
+- If we create permalinked user-generated maps we could conceivably let people embed them as iframes with minimal effort.
 
 BUGS:
 - Multiple clicks often required to switch texture type on option boxes

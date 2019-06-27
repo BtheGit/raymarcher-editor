@@ -14,7 +14,7 @@ const World = props => {
   const dispatch = useDispatch();
   const updateEditorState = useCallback((key, prop) => {
     dispatch(updateEditor(key, prop))
-  }, [dispatch])
+  }, [dispatch]);
   const [ world, saveWorldInstance ] = useState(null);
   useEffect(() => {
     async function updateWorld(){
@@ -31,8 +31,10 @@ const World = props => {
         world.updateGrid(props.WAD.map.grid);
       }
     };
+
     updateWorld();
   });
+  
   return (
     <canvas
       id="raymarcher-main-display"

@@ -10,3 +10,8 @@
   color: #BBB;
   padding: 20px 10px;
 }
+
+.player-editor__container .editor__save-button {
+  padding: 10px;
+  max-width: 200px;
+}

@@ -13,7 +13,7 @@ const OutputEditor = () => {
   };
   return(
     <div className="output-editor__container">
-      <button onClick={ onSaveHandler }>Save</button>
+      <button className="editor__save-button" onClick={ onSaveHandler }>Save WAD</button>
     </div>
   )
 }
