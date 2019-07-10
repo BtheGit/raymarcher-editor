@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setSkyProperties } from '../../store/reducers/levelReducer';
+import { clamp } from '../../utilities';
 import './SkyEditor.css';
 
 /**
@@ -95,8 +96,80 @@ const DEFAULT_SKY_IMAGE = {
  }
 
  const renderGradientForm = (config, updateSkyProperties) => {
+  const { stops } = config;
+  // We want to update a specific stops properties based on the index.
+  const updateStops = (baseStops, index, stop, color) => baseStops.map((baseStop, i) => i === index ? { stop, color } : baseStop);
   return (
-    <div>Gradient</div>
+    <div className="sky-editor__gradient-editor">
+      <form>
+        {
+          stops.map(({ stop, color }, i) => {
+            return (
+              <div key={ i } className="stop-editor__container">
+                <input 
+                  type="number" 
+                  value={ stop } 
+                  min="0" 
+                  max="1"
+                  step=".01"
+                  onChange={ e => {
+                    const clamped = clamp(e.target.value, 0, 1);
+                    // TODO: Clamp value between previous and next stop
+                    const newStops = updateStops(stops, i, clamped, color);
+                    updateSkyProperties({
+                      textureType: 'gradient',
+                      textureConfig: {
+                        stops: newStops,
+                      }
+                    });
+                  }}
+                  ></input>
+                <input 
+                  type="color" 
+                  value={ color }
+                  onChange={ e => {
+                    const newStops = updateStops(stops, i, stop, e.target.value);
+                    updateSkyProperties({
+                      textureType: 'gradient',
+                      textureConfig: {
+                        stops: newStops,
+                      }
+                    });
+                  }}
+                ></input>
+                <div 
+                  className="stop-editor__button-close" 
+                  tabIndex="0"
+                  onClick={() => {
+                    const newStops = stops.filter((_, idx) => idx !== i);
+                    updateSkyProperties({
+                      textureType: 'gradient',
+                      textureConfig: {
+                        stops: newStops,
+                      }
+                    });
+                  }}
+                >X</div>
+              </div>
+            )
+          })
+        }
+      </form>
+      <div 
+        className="stop-editor__button-new"
+        onClick={() => {
+          // Add a copy of the last stop as a new last stop.
+          const newStop = stops[stops.length - 1];
+          const newStops = [ ...stops, newStop ];
+          updateSkyProperties({
+            textureType: 'gradient',
+            textureConfig: {
+              stops: newStops,
+            }
+          });
+        }}
+      >+</div>
+    </div>
   )
  }
 
