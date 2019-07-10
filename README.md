@@ -60,6 +60,7 @@ Plan:
 - Allow for gradients with unlimited numbers of stops defined.
 - We'll start with 2 floor, 4 wall, and 3 sky texture options.
 - Allow for sky to be gradient or texture
+- Create image picker
 
 Notes:
 - We need to better dynamically tie the editors into the schema of the level since we are updating the level state directly.

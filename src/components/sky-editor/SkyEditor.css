@@ -57,3 +57,34 @@
   box-shadow: 0 10px 15px -10px #000;
 }
 
+.sky-editor__image-editor {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.sky-editor__image-editor p {
+  margin: 15px 0;
+}
+
+.sky-editor__image-editor .image-preview__container {
+  width: 80%;
+  height: 60%;
+  margin: 10px 0;
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sky-editor__image-editor .image-preview__image {
+  width: 100%;
+  height: auto;
+}
+
+.sky-editor__image-editor select {
+  margin: 15px;
+  width: 80%;
+}

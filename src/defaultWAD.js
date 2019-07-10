@@ -74,29 +74,10 @@ export default {
       Y: 0
     },
     sky: {
-      textureType: 'color',
+      textureType: 'image',
       textureConfig: {
-        color: "00ccdf"
-      }
+        name: 'background_trees1'
+      }    
     },
-    // sky: {
-    //   textureType: 'gradient',
-    //   textureConfig: {
-    //     stops:[
-    //         {
-    //           stop: 0,
-    //           color: "#7AA1D2"
-    //         },
-    //         {
-    //           stop: .8,
-    //           color: "#DBD4B4"
-    //         },
-    //         {
-    //           stop: 1,
-    //           color: "#CC95C0"
-    //         }
-    //       ],
-    //   }
-    // }
   },
 }

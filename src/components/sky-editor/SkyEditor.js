@@ -61,14 +61,40 @@ const DEFAULT_SKY_IMAGE = {
   }
 };
 
- const renderImageForm = config => {
+ const renderImageForm = (textureMap, textureList, textureConfig, updateSkyProperties) => {
+  const imageName = textureConfig.name;
+  const imageData = textureMap[imageName];
+  const imagePath = imageData ? imageData.rawImage.src : '';
    // Before we implement this we'll need to create a separate list for sky textures
   return (
-    <div>Texture</div>
+    <form className="sky-editor__image-editor">
+      <p>{ imageName }</p>
+      <div className="image-preview__container">
+        <img className="image-preview__image" src={ imagePath }/>
+      </div>
+      <select
+        value={ imageName }
+        onChange={ e => {
+          const name = e.target.value
+          updateSkyProperties({
+            textureType: 'image',
+            textureConfig: {
+              name,
+            },
+          });
+        } }
+      >
+        {
+          textureList.map((texture, i) => (
+            <option value={ texture } key={ i }>{ texture }</option>
+          ))
+        }
+      </select>
+    </form>
   )
  }
 
- const renderGradientForm = config => {
+ const renderGradientForm = (config, updateSkyProperties) => {
   return (
     <div>Gradient</div>
   )
@@ -93,6 +119,8 @@ const DEFAULT_SKY_IMAGE = {
 
 const SkyEditor = () => {
   const sky = useSelector(store => store.level.map.sky);
+  const textureMap = useSelector(store => store.editor.textureMap);
+  const textureList = useSelector(store => store.editor.textureList);
   const dispatch = useDispatch();
   const updateSkyProperties = useCallback(properties => dispatch(setSkyProperties(properties)), [dispatch]);
 
@@ -122,7 +150,7 @@ const SkyEditor = () => {
         <div className="sky-editor__form-container">
           {
             textureType === 'image'
-              ? renderImageForm(textureConfig, updateSkyProperties)
+              ? renderImageForm(textureMap, textureList, textureConfig, updateSkyProperties)
               : textureType === 'gradient'
                 ? renderGradientForm(textureConfig, updateSkyProperties)
                 : renderColorForm(textureConfig, updateSkyProperties)
