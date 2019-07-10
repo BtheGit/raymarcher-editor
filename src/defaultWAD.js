@@ -19,7 +19,9 @@ const textureNames = [
   'rusted_steel1.jpg',
   'stone2.jpg',
   'stripes_creamsicle1.jpg',
-  'background_trees1.jpg',
+  'background__trees1.jpg',
+  'background__clouds1.jpg',
+  'background__space1.jpg',
 ]
 
 const PATH = process.env.PUBLIC_URL + '/textures/';
@@ -76,7 +78,7 @@ export default {
     sky: {
       textureType: 'image',
       textureConfig: {
-        name: 'background_trees1'
+        name: 'background__clouds1'
       }    
     },
   },

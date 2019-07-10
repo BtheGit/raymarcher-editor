@@ -54,7 +54,7 @@ const DEFAULT_SKY_GRADIENT = {
 const DEFAULT_SKY_IMAGE = {
   textureType: 'image',
   textureConfig: {
-    name: 'background_trees1'
+    name: 'background__clouds1'
   }
 };
 
@@ -62,7 +62,10 @@ const DEFAULT_SKY_IMAGE = {
   const imageName = textureConfig.name;
   const imageData = textureMap[imageName];
   const imagePath = imageData ? imageData.rawImage.src : '';
-   // Before we implement this we'll need to create a separate list for sky textures
+  // Before we implement this we'll need to create a separate list for sky textures
+  // For the meantime, we can use a dumb naming scheme to regex against a leading 'background'.
+  // TODO: Temp:
+  const backgroundsList = textureList.filter(name => name.match(/^background__/));
   return (
     <form className="sky-editor__image-editor">
       <p>{ imageName }</p>
@@ -82,7 +85,7 @@ const DEFAULT_SKY_IMAGE = {
         } }
       >
         {
-          textureList.map((texture, i) => (
+          backgroundsList.map((texture, i) => (
             <option value={ texture } key={ i }>{ texture }</option>
           ))
         }
