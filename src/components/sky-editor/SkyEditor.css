@@ -5,8 +5,51 @@
   align-items: center;
 }
 
-.sky-editor__container p {
-  background: rgb(119, 91, 119);
-  color: #BBB;
-  padding: 20px 10px;
+.sky-editor__container-inner {
+  width: 90%;
+  height: auto;
+  box-shadow: 0 15px 10px -12px #222;
 }
+
+.sky-editor__select-menu {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+}
+
+.sky-editor__select-menu li {
+  list-style: none;
+  padding: 5px;
+  flex: 1;
+  text-align: center;
+  border-radius: 10px 15px 0 0;
+  background: rgb(190, 47, 190);
+}
+
+.sky-editor__select-menu li.active {
+  background: rgb(231, 105, 231);
+}
+
+.sky-editor__form-container {
+  background: rgb(231, 105, 231);
+  height: 300px;
+}
+
+.sky-editor__color-editor {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.sky-editor__color-editor input {
+  height: 80%;
+  width: 80%;
+  box-shadow: 0 5px 15px -10px #000;
+
+}  
+
+.sky-editor__color-editor input:hover, .sky-editor__color-editor input:focus {
+  box-shadow: 0 10px 15px -10px #000;
+}
+

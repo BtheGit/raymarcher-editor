@@ -27,6 +27,7 @@ const WALL = { type: 'wall', textureType: 'image', textureConfig: { name: 'red_b
 const EXT_WALL = { type: 'wall', textureType: 'image', textureConfig: { name: 'hedge1' }, faces: { north: null, east: null, south: null, west: null } };
 const FLOOR = { type: 'floor', textureType: 'image', textureConfig: { name: 'floor_grass1' }, };
 const INT_FLOOR = { type: 'floor', textureType: 'image', textureConfig: { name: 'concrete_brick2' }, ceilingConfig: { textureType: 'image', textureConfig: { name: 'fresco1'}}};
+const EXT_FLOOR = { type: 'floor', textureType: 'image', textureConfig: { name: 'concrete_brick2' }, };
 
 export default {
   textures: textureNames.map(name => PATH + name),
@@ -50,7 +51,7 @@ export default {
       [EXT_WALL,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,WALL,INT_FLOOR,INT_FLOOR,INT_FLOOR,INT_FLOOR,INT_FLOOR,INT_FLOOR,INT_FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,EXT_WALL],
       [EXT_WALL,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,WALL,INT_FLOOR,INT_FLOOR,INT_FLOOR,WALL,WALL,WALL,WALL,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,EXT_WALL],
       [EXT_WALL,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,WALL,WALL,INT_FLOOR,WALL,WALL,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,EXT_WALL],
-      [EXT_WALL,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,EXT_WALL],
+      [EXT_WALL,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,EXT_FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,EXT_WALL],
       [EXT_WALL,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,EXT_WALL],
       [EXT_WALL,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,EXT_WALL],
       [EXT_WALL,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,EXT_WALL],
@@ -71,19 +72,30 @@ export default {
       x: -0.66,
       Y: 0
     },
-    skyGradient: [
-      {
-        stop: 0,
-        color: "#7AA1D2"
-      },
-      {
-        stop: .8,
-        color: "#DBD4B4"
-      },
-      {
-        stop: 1,
-        color: "#CC95C0"
+    sky: {
+      textureType: 'color',
+      textureConfig: {
+        color: "00ccdf"
       }
-    ],
+    },
+    // sky: {
+    //   textureType: 'gradient',
+    //   textureConfig: {
+    //     stops:[
+    //         {
+    //           stop: 0,
+    //           color: "#7AA1D2"
+    //         },
+    //         {
+    //           stop: .8,
+    //           color: "#DBD4B4"
+    //         },
+    //         {
+    //           stop: 1,
+    //           color: "#CC95C0"
+    //         }
+    //       ],
+    //   }
+    // }
   },
 }

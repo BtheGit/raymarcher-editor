@@ -28,7 +28,7 @@ const World = props => {
         saveWorldInstance(world);
       }
       else {
-        world.updateGrid(props.WAD.map.grid);
+        world.updateMap(props.WAD.map);
       }
     };
 

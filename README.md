@@ -6,9 +6,9 @@
     Requirements:
         - Specify world dimensions in cell units.
         - ~~Cells are selectable~~
-        - Cells display a top down preview of the texture they contain. Walls with multiple faces will have to show each separately. Ceilings can perhaps be toggled on and off.
-        - Selecting a cell brings up a cell editor
-        - A cell editor lets you choose what type of cell it is (Floor or Wall, ceiling or not, multiple faces).
+        - ~~Cells display a top down preview of the texture they contain. Walls with multiple faces will have to show each separately. Ceilings can perhaps be toggled on and off.~~
+        - ~~Selecting a cell brings up a cell editor~~
+        - ~~A cell editor lets you choose what type of cell it is (Floor or Wall, ceiling or not, multiple faces).~~
         - A cell editor let's you choose the trigger type for the cell (or face in the case of walls).
         - Changing anything about the world must be validated against the player's location.
         - The player location and direction should be able to be changed. (Maybe FOV too).
@@ -83,6 +83,9 @@ Notes:
 - Instead of letting the creator set the grid size we could also have several fixed starting maps to choose from. Or we could let them set the size of the grid (within constraints) and the base floor and outer wall texture values. This would be a generator function. We could also have a number of starting maps available (or any map could be loaded as a starting map potentially) to build on top of.
 - If we create permalinked user-generated maps we could conceivably let people embed them as iframes with minimal effort.
 
+IMPROVEMENTS:
+- Optional: Have floor/wall editors background reflect the state of the cell.
+
 BUGS:
 - Multiple clicks often required to switch texture type on option boxes
 - Texture backgrounds on grid editor not set to cover
@@ -104,3 +107,14 @@ PLAYER EDITOR:
 SESSION STORAGE:
 - Create a backup to session storage for the editor.
 - Create a reset button (to allow easy clears of undesired session storage cache)
+
+GENERAL:
+- All color pickers should have an accompanying text input that can be optionally used (since the built in color picker doesn't seem to). Switch to using a 3rd party library (and the era of everything built in-house dies - should have died sooner)
+
+SKY EDITOR:
+- For now, we will just have 3 stop gradients. If you want a solid color you simply use the same for all three stops
+
+RAYMARCHER:
+- Change system to have a sky key that uses the same structural patterns as other textured cells.
+- Change gradient system to allow more than just up down vertical gradients.
+- Fix mini-map.

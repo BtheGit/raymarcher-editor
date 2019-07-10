@@ -7,9 +7,9 @@
   grid-template-rows: auto;
   grid-template-areas:
     "world map cell ."
-    "player map cell ."
+    "sky map cell ."
     "sky preview cell ."
     "sky preview cell ."
     ". preview cell ."
-    ". preview output ."
+    "player preview output ."
 }

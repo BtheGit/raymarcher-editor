@@ -1,9 +1,17 @@
 const SET_CELL_PROPERTIES = 'SET CELL PROPERTIES';
+const SET_SKY_PROPERTIES = 'SET SKY PROPERTIES';
 
 export const setCellProperties = (cell, properties) => ({
   type: SET_CELL_PROPERTIES,
   payload: {
     cell,
+    properties,
+  }
+})
+
+export const setSkyProperties = properties => ({
+  type: SET_SKY_PROPERTIES,
+  payload: {
     properties,
   }
 })
@@ -29,6 +37,16 @@ const reducer = (state = initialState, action) => {
         map: {
           ...state.map,
           grid: newGrid,
+        }
+      }
+    case SET_SKY_PROPERTIES:
+      return {
+        ...state,
+        map: {
+          ...state.map,
+          sky: {
+            ...action.payload.properties
+          },
         }
       }
     default:
