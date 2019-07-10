@@ -47,10 +47,6 @@ const DEFAULT_SKY_GRADIENT = {
         stop: .8,
         color: "#DBD4B4"
       },
-      {
-        stop: 1,
-        color: "#CC95C0"
-      }
     ]
   }
 };
@@ -203,6 +199,7 @@ const SkyEditor = () => {
   return (
     <div className="sky-editor__container">
       <div className="sky-editor__container-inner">
+        <div className="sky-editor__header">Sky Editor</div>
         <ul className="sky-editor__select-menu">
           <li 
             className={`${ textureType === 'color' ? 'active' : '' }`} 
