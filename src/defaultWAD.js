@@ -19,6 +19,7 @@ const textureNames = [
   'rusted_steel1.jpg',
   'stone2.jpg',
   'stripes_creamsicle1.jpg',
+  'background_trees1.jpg',
 ]
 
 const PATH = process.env.PUBLIC_URL + '/textures/';
