@@ -2,6 +2,7 @@ import React, { useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectActiveCell } from '../../store/reducers/editorReducer';
 import { getCellType } from '../../utilities';
+import CanvasOverlay from './canvas-overlay';
 import './GridEditor.css';
 
 const getStyleConfig = (cellConfig, textureMap) => {
@@ -26,7 +27,6 @@ const getStyleConfig = (cellConfig, textureMap) => {
     }
   }
 }
-
 
 const GridEditor = () => {
   // Ha, I hope we can fix this soon.
@@ -167,6 +167,7 @@ const GridEditor = () => {
     <div className="grid-editor__container">
       <div className="grid-editor__grid-container">
         { generateGridCells(grid) }
+        <CanvasOverlay />
       </div>
     </div>
   )

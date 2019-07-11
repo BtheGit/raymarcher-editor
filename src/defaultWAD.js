@@ -63,17 +63,19 @@ export default {
       [EXT_WALL,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,FLOOR,EXT_WALL],
       [EXT_WALL,EXT_WALL,EXT_WALL,EXT_WALL,EXT_WALL,EXT_WALL,EXT_WALL,EXT_WALL,EXT_WALL,EXT_WALL,EXT_WALL,EXT_WALL,EXT_WALL,EXT_WALL,EXT_WALL,EXT_WALL,EXT_WALL,EXT_WALL,EXT_WALL,EXT_WALL,EXT_WALL,EXT_WALL,EXT_WALL,EXT_WALL],    
     ],
-    playerPos: {
-      x: 9.5,
-      y: 20
-    },
-    playerDir: {
-      x: 0,
-      y: -1
-    },
-    playerPlane: {
-      x: -0.66,
-      Y: 0
+    player: {
+      pos: {
+        x: 9.5,
+        y: 20
+      },
+      dir: {
+        x: 0,
+        y: -1
+      },
+      plane: {
+        x: -0.66,
+        Y: 0
+      },
     },
     sky: {
       textureType: 'image',

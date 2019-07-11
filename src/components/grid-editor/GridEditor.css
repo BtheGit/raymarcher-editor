@@ -9,6 +9,8 @@
 }
 
 .grid-editor__grid-container {
+  /* The canvas overlay will use this */
+  position: relative;
   background: white;
   box-shadow: 0 15px 15px -12px #333;
   margin-top: 20px;

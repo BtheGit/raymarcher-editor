@@ -16,24 +16,26 @@ const World = props => {
     dispatch(updateEditor(key, prop))
   }, [dispatch]);
   const [ world, saveWorldInstance ] = useState(null);
+  async function updateWorld(){
+    if(!world){
+      const world = await renderWorld(props.WAD);
+      const textureList = world.getTextureList();
+      const textureMap = world.getTextureMap();
+      updateEditorState('textureList', textureList);
+      // We probably don't need both of these. But we'll refactor later.
+      updateEditorState('textureMap', textureMap);
+      saveWorldInstance(world);
+    }
+    else {
+      world.updateMap(props.WAD.map);
+    }
+  };
   useEffect(() => {
-    async function updateWorld(){
-      if(!world){
-        const world = await renderWorld(props.WAD);
-        const textureList = world.getTextureList();
-        const textureMap = world.getTextureMap();
-        updateEditorState('textureList', textureList);
-        // We probably don't need both of these. But we'll refactor later.
-        updateEditorState('textureMap', textureMap);
-        saveWorldInstance(world);
-      }
-      else {
-        world.updateMap(props.WAD.map);
-      }
-    };
-
     updateWorld();
+    // We want to also subscribe to listeners to update our store with published changes from the
+    // library. Starting with the player position.
   });
+
   
   return (
     <canvas
