@@ -37,6 +37,7 @@ export default {
   textures: textureNames.map(name => PATH + name),
   sprites: [
     {
+      // TODO: We need to ensure unique names. To that end we might want to move from an array to a map.
       name: 'tree1',
       spritesheet: 'sprite__tree_1',
       pos: {

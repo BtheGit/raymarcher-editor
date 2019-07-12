@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { updateEditor } from '../../../store/reducers/editorReducer';
 import WorldEngine from 'raymarcher';
 
@@ -12,6 +12,7 @@ const renderWorld = WorldEngine({
 
 const World = props => {
   const dispatch = useDispatch();
+  const sprites = useSelector(store => store.level.sprites);
   const updateEditorState = useCallback((key, prop) => {
     dispatch(updateEditor(key, prop))
   }, [dispatch]);
@@ -33,6 +34,10 @@ const World = props => {
     }
     else {
       world.updateMap(props.WAD.map);
+      if(sprites){
+        console.log(sprites)
+        world.updateSprites(sprites);
+      }
     }
   };
   useEffect(() => {

@@ -1,6 +1,7 @@
 const SET_CELL_PROPERTIES = 'SET CELL PROPERTIES';
 const SET_SKY_PROPERTIES = 'SET SKY PROPERTIES';
 const UPDATE_PLAYER_POSITION = "UPDATE PLAYER POSITION";
+const UPDATE_SPRITE = "UPDATE SPRITE";
 
 export const setCellProperties = (cell, properties) => ({
   type: SET_CELL_PROPERTIES,
@@ -21,6 +22,13 @@ export const updatePlayerPosition = properties => ({
   type: UPDATE_PLAYER_POSITION,
   payload: {
     properties,
+  }
+})
+
+export const updateSprite = properties => ({
+  type: UPDATE_SPRITE,
+  payload: {
+    ...properties,
   }
 })
 
@@ -64,6 +72,18 @@ const reducer = (state = initialState, action) => {
           ...state.map,
           player: action.payload.properties,
         },
+      }
+    case UPDATE_SPRITE:
+      return {
+        ...state,
+        sprites: [
+          ...state.sprites.map(sprite => {
+            if(sprite.name === action.payload.name){
+              return action.payload;
+            }
+            return sprite;
+          })
+        ]
       }
     default:
       return state;
