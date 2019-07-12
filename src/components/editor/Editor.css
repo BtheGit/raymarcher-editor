@@ -3,15 +3,15 @@
   width: 100%;
   background: var(--background-color);
   display: grid;
-  grid-template-columns: 3fr 6fr 3fr .5fr;
+  grid-template-columns: 2fr 6fr 2fr;
   grid-template-rows: auto;
   grid-template-areas:
-    "sky map cell ."
-    "sky map cell ."
-    "sky preview cell ."
-    "sky preview cell ."
-    ". preview cell ."
-    ". preview cell ."
-    ". preview player ."
-    ". preview output ."
+    "player map cell"
+    "output map cell"
+    ". preview cell"
+    ". preview cell"
+    ". preview cell"
+    ". preview sky"
+    ". preview sky"
+    ". preview ."
 }

@@ -2,6 +2,7 @@
   flex: 1;
   background: var(--wall-editor__background);
   border-radius: 4px;
+  overflow-y: scroll;
 }
 
 .wall-editor__container h3 {
@@ -23,7 +24,7 @@
 }
 
 .face-editor__container {
-  padding: 0 15px;
+  padding: 0 10px;
 }
 
 .face-editor__container input[type=checkbox] {

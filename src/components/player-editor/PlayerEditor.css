@@ -1,8 +1,8 @@
 .player-editor__container {
   grid-area: player;
-  display: flex;
+  /* display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
 }
 
 .player-editor__container p {

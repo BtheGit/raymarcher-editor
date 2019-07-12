@@ -1,8 +1,8 @@
 .output-editor__container {
   grid-area: output;
-  display: flex;
+  /* display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
 }
 
 .output-editor__container .editor__save-button {

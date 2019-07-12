@@ -1,5 +1,7 @@
 .cell-editor__container {
   grid-area: cell;
+  width: 300px;
+  height: 500px;
   display: flex;
   flex-direction: column;
   box-shadow: 0 15px 10px -12px #222;
@@ -7,7 +9,7 @@
 
 .cell-editor__container hr {
   width: 50%;
-  margin: 10px auto;
+  margin: 15px auto;
   background: #333;
   height: 1px;
   border: none;
@@ -51,7 +53,7 @@
 
 
 .cell-editor__option-box {
-  padding: 5px 10px;
+  padding: 5px 15px;
   margin: 0 5px;
 }
 

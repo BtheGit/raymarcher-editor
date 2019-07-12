@@ -3,6 +3,7 @@
   padding-top: 10px;
   background: var(--floor-editor__background);
   border-radius: 4px;
+  overflow-y: scroll;
 }
 
 .floor-editor__container h4 {
