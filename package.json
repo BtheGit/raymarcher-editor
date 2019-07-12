@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "konva": "^3.4.0",
-    "raymarcher": "^0.1.2",
+    "raymarcher": "^0.1.22",
     "react": "^16.8.6",
     "react-color": "^2.17.3",
     "react-dom": "^16.8.6",
