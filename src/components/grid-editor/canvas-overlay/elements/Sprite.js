@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { updateSprite } from '../../../../store/reducers/levelReducer';
 import { Circle } from 'react-konva';
 
 const Sprite = ({ sprite, mapWidth, mapHeight, canvasSize, dispatch }) => {
+  const [color, updateColor] = useState('green')
   const x = (sprite.pos.x / mapWidth) * canvasSize;
   const y = (sprite.pos.y / mapHeight) * canvasSize;
   return (
@@ -10,10 +11,12 @@ const Sprite = ({ sprite, mapWidth, mapHeight, canvasSize, dispatch }) => {
       x={ x }
       y={ y }
       radius={ 5 }
-      fill="green"
+      fill={ color }
       stroke="black"
       strokeWidth=".5"
       draggable
+      onMouseOver={() => updateColor('purple')}
+      onMouseOut={() => updateColor('green')}
       onDragMove={e => {
         const { x, y } = e.target.attrs;
         // We need to rescale.

@@ -35,7 +35,6 @@ const World = props => {
     else {
       world.updateMap(props.WAD.map);
       if(sprites){
-        console.log(sprites)
         world.updateSprites(sprites);
       }
     }

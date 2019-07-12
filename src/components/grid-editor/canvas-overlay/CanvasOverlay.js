@@ -1,6 +1,6 @@
-import React, { useRef, useEffect } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Stage, Layer, Circle, Text, } from 'react-konva';
+import { Stage, Layer } from 'react-konva';
 import { Sprite, Player } from './elements';
 // import Konva from 'konva';
 import './CanvasOverlay.css';
