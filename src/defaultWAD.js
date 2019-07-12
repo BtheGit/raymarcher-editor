@@ -22,6 +22,7 @@ const textureNames = [
   'background__trees1.jpg',
   'background__clouds1.jpg',
   'background__space1.jpg',
+  'sprite__tree_1.png',
 ]
 
 const PATH = process.env.PUBLIC_URL + '/textures/';
@@ -34,7 +35,58 @@ const EXT_FLOOR = { type: 'floor', textureType: 'image', textureConfig: { name: 
 
 export default {
   textures: textureNames.map(name => PATH + name),
-  sprites: [],
+  sprites: [
+    {
+      name: 'tree1',
+      spritesheet: 'sprite__tree_1',
+      pos: {
+        x: 8.5,
+        y: 17,
+      },
+      isAnimated: false,
+      isMultifaceted: false,
+      isSolid: true,
+      boundingBox: .2,
+    },
+    {
+      name: 'tree2',
+      spritesheet: 'sprite__tree_1',
+      pos: {
+        x: 8.75,
+        y: 16.5,
+      },
+      isAnimated: false,
+      isMultifaceted: false,
+      isSolid: true,
+      boundingBox: .2,
+      verticalOffset: 1,
+    },
+    {
+      name: 'tree3',
+      spritesheet: 'sprite__tree_1',
+      pos: {
+        x: 10.5,
+        y: 17,
+      },
+      isAnimated: false,
+      isMultifaceted: false,
+      isSolid: true,
+      boundingBox: .2,
+    },
+    {
+      name: 'tree4',
+      spritesheet: 'sprite__tree_1',
+      pos: {
+        x: 10.25,
+        y: 16.5,
+      },
+      isAnimated: false,
+      isMultifaceted: false,
+      isSolid: true,
+      boundingBox: .2,
+      verticalOffset: 1,
+    },
+  ],
   tiles: [],
   map: {
     grid: [
