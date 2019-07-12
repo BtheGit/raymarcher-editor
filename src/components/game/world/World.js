@@ -21,6 +21,11 @@ const World = props => {
       const world = await renderWorld(props.WAD);
       const textureList = world.getTextureList();
       const textureMap = world.getTextureMap();
+      world.subscribe(action => {
+        // We want to also subscribe to listeners to update our store with published changes from the
+        // library. Starting with the player position.
+        updateEditorState('player', action.payload);
+      });
       updateEditorState('textureList', textureList);
       // We probably don't need both of these. But we'll refactor later.
       updateEditorState('textureMap', textureMap);
@@ -32,10 +37,7 @@ const World = props => {
   };
   useEffect(() => {
     updateWorld();
-    // We want to also subscribe to listeners to update our store with published changes from the
-    // library. Starting with the player position.
   });
-
   
   return (
     <canvas

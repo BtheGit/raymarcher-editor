@@ -14,7 +14,7 @@ import * as serviceWorker from './serviceWorker';
 // TODO: Get state from a database...
 // For now, we're going to use some default data.
 import defaultWAD from './defaultWAD';
-const store = createStore(rootReducer, { level: defaultWAD }, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+const store = createStore(rootReducer, { level: defaultWAD });
 
 const Main = () => (
   <Provider store={ store }>
