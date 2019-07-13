@@ -1,6 +1,7 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectActiveCell } from '../../store/reducers/editorReducer';
+import { loadTextures } from '../../store/reducers/textureReducer';
 import { getCellType } from '../../utilities';
 import CanvasOverlay from './canvas-overlay';
 import './GridEditor.css';
@@ -29,6 +30,16 @@ const getStyleConfig = (cellConfig, textureMap) => {
 }
 
 const GridEditor = () => {
+  // We want to preload all the textures. This is memory intensive, but it's a step up from generating new image for
+  // each cell. We'll use a spinner until all the images are generated.
+  const dispatch = useDispatch();
+  const textures = useSelector(store => store.level.textures);
+  useEffect(() => {
+    // TODO: This loads all the textures in memory and is not ideal, especially as we are not currently
+    // using this map.
+    dispatch(loadTextures(textures));
+  })
+
   // Ha, I hope we can fix this soon.
   const level = useSelector(store => store.level);
   const activeCell = useSelector(store => store.editor.activeCell);
@@ -44,7 +55,6 @@ const GridEditor = () => {
   }
   const map = level.map;
   const grid = map.grid;
-  const dispatch = useDispatch();
   const selectCell = useCallback((x, y) => {
     // Calculate the current cell type to update the cell editor view.
     const cell = grid[y][x];
@@ -167,7 +177,12 @@ const GridEditor = () => {
     <div className="grid-editor__container">
       <div className="grid-editor__grid-container">
         { generateGridCells(grid) }
-        <CanvasOverlay />
+        {
+          textures
+            ? <CanvasOverlay />
+            : <div>SPINNER</div>
+
+        }
       </div>
     </div>
   )
