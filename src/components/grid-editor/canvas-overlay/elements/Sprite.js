@@ -13,7 +13,7 @@ const Sprite = ({ sprite, mapWidth, mapHeight, canvasSize, dispatch }) => {
       radius={ 5 }
       fill={ color }
       stroke="black"
-      strokeWidth=".5"
+      strokeWidth={ .5 }
       draggable
       onMouseOver={() => updateColor('purple')}
       onMouseOut={() => updateColor('green')}

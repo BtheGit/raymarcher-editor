@@ -1,13 +1,8 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Stage, Layer } from 'react-konva';
-import { Sprite, Player } from './elements';
-// import Konva from 'konva';
+import { Sprite, Player, Cell } from './elements';
 import './CanvasOverlay.css';
-
-// I think we should explore react-canvas or react-konva to handle canvas sprites (potentially also tiles).
-// That would make it a lot easier to sync callbacks with drawn elements (dragging a sprite updates it's position
-// for example.)
 
 const CANVAS_SIZE = 360;
 
@@ -15,11 +10,11 @@ const CanvasOverlay = () => {
   const dispatch = useDispatch();
   const sprites = useSelector(store => store.level.sprites);
   const map = useSelector(store => store.level.map);
-  const activeCell = useSelector(store => store.editor.activeCell);
-  const textureMap = useSelector(store => store.editor.textureMap);
+  // const activeCell = useSelector(store => store.editor.activeCell);
+  // const textureMap = useSelector(store => store.editor.textureMap);
   const currentPlayer = useSelector(store => store.editor.player);
 
-  const grid = map.grid;
+  // const grid = map.grid;
 
   const player = currentPlayer ? currentPlayer : map.player;
 
@@ -30,10 +25,20 @@ const CanvasOverlay = () => {
   return (
     <Stage width={ CANVAS_SIZE } height={ CANVAS_SIZE } className="overlay-canvas__container">
       <Layer>
+        {/* // TODO: */}
         {/* {
-          grid.map((row, rowIndex) => {
-
-          })
+          grid.map((row, rowIndex) => row.map((cell, columnIndex) => (
+            <Cell 
+              key={`${ rowIndex }x${ columnIndex }`} 
+              cell={ cell }
+              textureMap={ textureMap }
+              mapHeight={ mapHeight }
+              mapWidth={ mapWidth }
+              row={ rowIndex }
+              column={ columnIndex }
+              canvasSize={ CANVAS_SIZE }
+            />
+          )))
         } */}
         {
           sprites.map((sprite, i) => {
