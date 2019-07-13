@@ -14,6 +14,8 @@ const CanvasOverlay = () => {
   // const textureMap = useSelector(store => store.editor.textureMap);
   const currentPlayer = useSelector(store => store.editor.player);
 
+  const isSpriteEditorActive = useSelector(store => store.editor.spriteEditor.isActive);
+
   // const grid = map.grid;
 
   const player = currentPlayer ? currentPlayer : map.player;
@@ -23,7 +25,7 @@ const CanvasOverlay = () => {
 
   // TODO: Find a dynamic way to determine what size to set the canvas instead of cheating.
   return (
-    <Stage width={ CANVAS_SIZE } height={ CANVAS_SIZE } className="overlay-canvas__container">
+    <Stage width={ CANVAS_SIZE } height={ CANVAS_SIZE } className={`overlay-canvas__container ${ isSpriteEditorActive ? 'active' : '' }`}>
       <Layer>
         {/* // TODO: */}
         {/* {

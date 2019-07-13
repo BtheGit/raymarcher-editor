@@ -2,6 +2,7 @@
 const SELECT_ACTIVE_CELL = 'SELECT ACTIVE CELL';
 const UPDATE_VISIBLE_CELL_EDITOR = 'UPDATE VISIBLE CELL EDITOR';
 const UPDATE_EDITOR = 'UPDATE EDITOR';
+const UPDATE_SPRITE_EDITOR = "UPDATE SPRITE EDITOR";
 
 export const selectActiveCell = (x, y, type) => ({
   type: SELECT_ACTIVE_CELL,
@@ -25,6 +26,14 @@ export const updateEditor = (key, prop) => ({
     key, 
     prop,
   }
+})
+
+// This isn't necessary. We could use the action creator above. But it does
+// let us change one element without knowing the state of the sprite editor 
+// (ie changing the active state as a toggle);
+export const updateSpriteEditor = properties => ({
+  type: UPDATE_SPRITE_EDITOR,
+  payload: properties,
 })
 
 const initialState = {
@@ -51,6 +60,9 @@ const initialState = {
       west: null,
     },
   },
+  spriteEditor: {
+    isActive: false,
+  }
 };
 
 const reducer = (state = initialState, action) => {
@@ -75,6 +87,16 @@ const reducer = (state = initialState, action) => {
         cellEditor: {
           ...state.cellEditor,
           visibleEditor: action.payload.type,
+        }
+      }
+    case UPDATE_SPRITE_EDITOR:
+      // We're going to keep it dumb here and let any properties be overwritten.
+      // Be sure to pass the right shape of things being overwritten
+      return {
+        ...state,
+        spriteEditor: {
+          ...state.spriteEditor,
+          ...action.payload,
         }
       }
     default:

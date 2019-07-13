@@ -8,12 +8,52 @@
   align-items: center;
 }
 
+.grid-editor__tab-container {
+  margin-top: 20px;
+  height: 30px;
+  width: 360px;
+  display: flex;
+}
+
+.grid-editor__tab {
+  display: inline-block;
+  width: 50%;
+  padding: 5px 0;
+  border-radius: 10px 15px 0 0;
+}
+
+.grid-editor__tab:first-of-type {
+  background: #007d9e;
+}
+
+.grid-editor__tab:last-of-type {
+  background: #bf0682
+}
+
+.grid-editor__tab.active {
+  filter: brightness(1.2);
+}
+
+.grid-editor__tab-container input {
+  display: none;
+}
+
+.grid-editor__tab-container label {
+  text-align: center;
+  color: #DDD;
+  filter: brightness(0.4);
+}
+
+
+.grid-editor__tab-container label:hover {
+  filter: brightness(1.2);
+}
+
 .grid-editor__grid-container {
   /* The canvas overlay will use this */
   position: relative;
   background: white;
   box-shadow: 0 15px 15px -12px #333;
-  margin-top: 20px;
   height: 360px;
   width: 360px;
 }

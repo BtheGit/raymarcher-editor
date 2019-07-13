@@ -4,5 +4,10 @@
   width: 100%;
   top: 0;
   left: 0;
-  /* pointer-events: none; */
+  pointer-events: none;
+}
+
+/* "Turn on" sprite editor interactions */
+.overlay-canvas__container.active {
+  pointer-events: initial;
 }

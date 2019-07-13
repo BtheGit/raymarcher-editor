@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectActiveCell } from '../../store/reducers/editorReducer';
+import { selectActiveCell, updateSpriteEditor } from '../../store/reducers/editorReducer';
 import { loadTextures } from '../../store/reducers/textureReducer';
 import { getCellType } from '../../utilities';
 import CanvasOverlay from './canvas-overlay';
@@ -40,6 +40,8 @@ const GridEditor = () => {
     dispatch(loadTextures(textures));
   })
 
+  const isSpriteEditorActive = useSelector(store => store.editor.spriteEditor.isActive);
+
   // Ha, I hope we can fix this soon.
   const level = useSelector(store => store.level);
   const activeCell = useSelector(store => store.editor.activeCell);
@@ -61,6 +63,9 @@ const GridEditor = () => {
     const cellType = getCellType(cell);
     dispatch(selectActiveCell(x, y, cellType));
   }, [dispatch, grid]);
+  const toggleEditor = useCallback((isActive) => {
+    dispatch(updateSpriteEditor({ isActive }))
+  })
   // We'll add in components of course later
   const generateGridCells = grid => {
     return grid.map((row, rowIndex) => {
@@ -175,6 +180,24 @@ const GridEditor = () => {
 
   return(
     <div className="grid-editor__container">
+      <div className="grid-editor__tab-container">
+        <input 
+          type="radio" 
+          value="cell" 
+          id="grid-editor__cell-tab"
+          checked={ !isSpriteEditorActive }
+          onChange={() => toggleEditor(false)}
+        ></input>
+        <label htmlFor="grid-editor__cell-tab" className={`grid-editor__tab ${ isSpriteEditorActive ? '' : 'active' }`}>Edit Cells</label>
+        <input 
+          type="radio" 
+          value="sprite" 
+          id="grid-editor__wall-tab"
+          checked={ isSpriteEditorActive }
+          onChange={() => toggleEditor(true)}
+          ></input>
+        <label htmlFor="grid-editor__wall-tab" className={`grid-editor__tab ${ isSpriteEditorActive ? 'active' : '' }`}>Edit Sprites</label>
+      </div>
       <div className="grid-editor__grid-container">
         { generateGridCells(grid) }
         {
